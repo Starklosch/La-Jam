@@ -1,27 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardSystem : MonoBehaviour
 {
-    Card[] inHand = new Card[3];
+    Cards[] inHand = new Cards[3];
 
-    List<Card> deck;
-
-    public Vector3 force;
+    List<Cards> deck;
 
     public GameObject testCard;
 
+
     public float throwHeight = 1;
+    public float maxMana = 100;
+    public float manaFillSpeed = 10;
 
-    public float maxMana;
+    public Slider manaSlider;
+    public TextMeshProUGUI manaText;
 
-    float mana;
+    public float cardCost = 10;
+
+    float mana = 0;
+
+    private void Start()
+    {
+        manaSlider.maxValue = maxMana;
+        mana = maxMana;
+        manaText.text = mana.ToString();
+        manaSlider.value = mana;
+    }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Mana
+        if (mana < 100)
         {
+            mana = Mathf.Clamp(mana + manaFillSpeed * Time.deltaTime, 0, maxMana);
+            manaSlider.value = mana;
+            manaText.text = mana.ToString("0,0");
+        }
+
+        // Usar carta
+        if (Input.GetMouseButtonDown(0) && mana > cardCost)
+        {
+            mana -= cardCost;
+
             var position = transform.position + Vector3.up * throwHeight;
             var direction = Vector3.Normalize(Camera.main.transform.forward);
 
@@ -32,32 +57,31 @@ public class CardSystem : MonoBehaviour
     }
 
 
-    public Card TakeCard(int slot)
+    public Cards TakeCard(int slot)
     {
-        if (inHand[slot] != null)
-            return null;
-
         while (true)
         {
             var rndCard = Random.Range(0, deck.Count - 1);
             var card = deck[rndCard];
 
-            if (!card.InHand)
-                continue;
-
-            card.InHand = true;
             inHand[slot] = card;
             return card;
         }
     }
 
-    public void AddCard(Card c)
+    public void AddCard(Cards c)
     {
         deck.Add(c);
     }
 
-    public void RemoveCard(Card c)
+    public void RemoveCard(Cards c)
     {
         deck.Remove(c);
+    }
+
+    public enum Cards
+    {
+        Null,
+        Teleport
     }
 }
