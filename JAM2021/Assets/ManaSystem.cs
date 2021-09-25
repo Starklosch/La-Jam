@@ -6,15 +6,41 @@ using UnityEngine.UI;
 
 public class ManaSystem : MonoBehaviour
 {
+    [SerializeField] float baseHealth = 100;
+
     [SerializeField] float maxMana = 100;
     [SerializeField] float manaFillSpeed = 10;
 
     [SerializeField] Slider manaSlider;
+    [SerializeField] Slider healthSlider;
     [SerializeField] TextMeshProUGUI manaText;
+    [SerializeField] TextMeshProUGUI healthText;
 
-    float mana = 0;
+    [Min(0)]
+    float m_health = 0, m_mana = 0;
 
-    public float Mana { get => mana; }
+    public float Health
+    {
+        get => m_health;
+        private set
+        {
+            m_health = Mathf.Clamp(value, 0, baseHealth);
+            healthSlider.value = value;
+            healthText.text = value.ToString("0,0");
+        }
+    }
+
+    public float Mana
+    {
+        get => m_mana;
+        private set
+        {
+            m_mana = Mathf.Clamp(value, 0, maxMana);
+            manaSlider.value = value;
+            manaText.text = value.ToString("0,0");
+        }
+    }
+
     public float MaxMana
     {
         get => maxMana;
@@ -28,31 +54,40 @@ public class ManaSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        manaSlider.maxValue = maxMana;
-        mana = maxMana;
-        manaText.text = mana.ToString("0,0");
-        manaSlider.value = mana;
+        // Start full health and mana
+        Health = baseHealth;
+        Mana = maxMana;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (mana < maxMana)
+        if (Mana < maxMana)
         {
-            mana = Mathf.Clamp(mana + manaFillSpeed * Time.deltaTime, 0, maxMana);
-            manaSlider.value = mana;
-            manaText.text = mana.ToString("0,0");
+            Mana += manaFillSpeed * Time.deltaTime;
         }
     }
 
     public void UseMana(float mana)
     {
-        if (mana > this.mana)
+        if (mana > Mana)
         {
             Debug.LogError("Not enough mana.");
             return;
         }
 
-        this.mana -= mana;
+        Mana -= mana;
+    }
+
+    public void Heal(float healing)
+    {
+        if (Health < baseHealth)
+            Health += healing;
+    }
+
+    public void Harm(float damage)
+    {
+        if (Health > 0)
+            Health -= damage;
     }
 }
