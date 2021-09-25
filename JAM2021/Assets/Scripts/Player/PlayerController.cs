@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
         int numberPressed = inputHandler.GetNumberPressed();
         if(numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
     }
+
     void GroundCheck()
     {
         //Asegurarse de que la distancia para comprobar el suelo es suficientemente pequeña para evitar snapping al suelo
