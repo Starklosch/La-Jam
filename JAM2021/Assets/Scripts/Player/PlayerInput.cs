@@ -32,9 +32,9 @@ public class PlayerInput : MonoBehaviour
 
     public int GetNumberPressed()
     {
-        if (Input.GetKey(KeyCode.Alpha1)) return 1;
-        else if (Input.GetKey(KeyCode.Alpha2)) return 2;
-        else if (Input.GetKey(KeyCode.Alpha3)) return 3;
+        if (Input.GetKeyDown(KeyCode.Alpha1)) return 1;
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) return 2;
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) return 3;
         return -1;
     }
 
