@@ -86,9 +86,20 @@ public class PlayerController : MonoBehaviour
             //AudioSource.PlayOneShot(LandSfx);
         }
 
+        HandleCharacterInput();
+
         HandleCharacterMovement();
     }
 
+    void HandleCharacterInput()
+    {
+        //Rueda del raton
+        int m = inputHandler.GetMouseWheelDirection();
+        if (m != 0) GameManager.Instance.MoveCursor(m);
+        //Botones numericos
+        int numberPressed = inputHandler.GetNumberPressed();
+        if(numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
+    }
     void GroundCheck()
     {
         //Asegurarse de que la distancia para comprobar el suelo es suficientemente pequeña para evitar snapping al suelo
@@ -134,10 +145,6 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterMovement()
     {
-        //Rueda del raton
-        int m = inputHandler.GetMouseWheelDirection();
-        if (m != 0) GameManager.Instance.MoveCursor(m);
-
         //Rotacion horizontal
         
         //Rotar el transform con el input en su eje Y

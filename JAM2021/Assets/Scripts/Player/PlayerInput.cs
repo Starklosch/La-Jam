@@ -30,6 +30,14 @@ public class PlayerInput : MonoBehaviour
         return Cursor.lockState == CursorLockMode.Locked /*&& (JUEGO NO HA TERMINADO)*/;
     }
 
+    public int GetNumberPressed()
+    {
+        if (Input.GetKey(KeyCode.Alpha1)) return 1;
+        else if (Input.GetKey(KeyCode.Alpha2)) return 2;
+        else if (Input.GetKey(KeyCode.Alpha3)) return 3;
+        return -1;
+    }
+
     public Vector3 GetMoveInput()
     {
         if (CanProcessInput())

@@ -77,4 +77,10 @@ public class GameManager : MonoBehaviour
 
         cardsSD.UpdateCursorUI(cursorIndex);
     }
+
+    public void SetCursor(int i)
+    {
+        cursorIndex = i;
+        cardsSD.UpdateCursorUI(cursorIndex);
+    }
 }
