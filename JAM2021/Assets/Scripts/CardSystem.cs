@@ -12,40 +12,28 @@ public class CardSystem : MonoBehaviour
 
     public GameObject testCard;
 
+    public ManaSystem manaSystem;
 
     public float throwHeight = 1;
-    public float maxMana = 100;
-    public float manaFillSpeed = 10;
-
-    public Slider manaSlider;
-    public TextMeshProUGUI manaText;
 
     public float cardCost = 10;
 
-    float mana = 0;
 
     private void Start()
     {
-        manaSlider.maxValue = maxMana;
-        mana = maxMana;
-        manaText.text = mana.ToString();
-        manaSlider.value = mana;
+        if (manaSystem == null && !TryGetComponent(out manaSystem))
+        {
+            Debug.LogError("manaSystem is null");
+        }
     }
 
     private void Update()
     {
-        // Mana
-        if (mana < 100)
-        {
-            mana = Mathf.Clamp(mana + manaFillSpeed * Time.deltaTime, 0, maxMana);
-            manaSlider.value = mana;
-            manaText.text = mana.ToString("0,0");
-        }
 
         // Usar carta
-        if (Input.GetMouseButtonDown(0) && mana > cardCost)
+        if (Input.GetMouseButtonDown(0) && manaSystem.Mana > cardCost)
         {
-            mana -= cardCost;
+            manaSystem.UseMana(cardCost);
 
             var position = transform.position + Vector3.up * throwHeight;
             var direction = Vector3.Normalize(Camera.main.transform.forward);
