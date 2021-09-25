@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
 
             //Convierte el input de movimiento a worldspace basado en la orientacion del player transform
             Vector3 worldspaceMoveInput = transform.TransformVector(inputHandler.GetMoveInput());
-            Debug.Log(IsGrounded);
+            //Debug.Log(IsGrounded);
             //Gestion de tocar el suelo
             if (IsGrounded)
             {

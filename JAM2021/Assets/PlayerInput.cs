@@ -26,6 +26,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool CanProcessInput()
     {
+        //Debug.Log(Cursor.lockState);
         return Cursor.lockState == CursorLockMode.Locked /*&& (JUEGO NO HA TERMINADO)*/;
     }
 
