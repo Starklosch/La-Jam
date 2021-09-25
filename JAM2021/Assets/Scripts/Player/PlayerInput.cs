@@ -55,6 +55,17 @@ public class PlayerInput : MonoBehaviour
         return GetMouseOrStickLookAxis("Mouse Y", "Look Y");
     }
 
+    public int GetMouseWheelDirection()
+    {
+        if (CanProcessInput())
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0) return 1;
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0) return -1;
+        }
+
+        return 0;
+    }
+
     public bool GetJumpInputDown()
     {
         if (CanProcessInput())

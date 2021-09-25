@@ -134,23 +134,26 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterMovement()
     {
+        //Rueda del raton
+        int m = inputHandler.GetMouseWheelDirection();
+        if (m != 0) GameManager.Instance.MoveCursor(m);
+
         //Rotacion horizontal
-        {
-            //Rotar el transform con el input en su eje Y
-            transform.Rotate(new Vector3(0f, (inputHandler.GetLookInputsHorizontal() * rotationSpeed), 0f), Space.Self);
-        }
-
+        
+        //Rotar el transform con el input en su eje Y
+        transform.Rotate(new Vector3(0f, (inputHandler.GetLookInputsHorizontal() * rotationSpeed), 0f), Space.Self);
+        
         //Rotacion vertical
-        {
-            //Suma el input a la camara
-            cameraVerticalAngle += inputHandler.GetLookInputsVertical() * rotationSpeed;
+        
+        //Suma el input a la camara
+        cameraVerticalAngle += inputHandler.GetLookInputsVertical() * rotationSpeed;
 
-            // limita el movimiento vertical de la camara
-            cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -89f, 89f);
+        // limita el movimiento vertical de la camara
+        cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -89f, 89f);
 
-            //Aplica el angulo vertical de forma local a la camara para que pivotee
-            playerCamera.transform.localEulerAngles = new Vector3(cameraVerticalAngle, 0, 0);
-        }
+        //Aplica el angulo vertical de forma local a la camara para que pivotee
+        playerCamera.transform.localEulerAngles = new Vector3(cameraVerticalAngle, 0, 0);
+        
 
         //Movimiento del player
         bool isSprinting = inputHandler.GetSprintInputHeld();
