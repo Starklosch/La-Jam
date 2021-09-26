@@ -13,9 +13,13 @@ public class RenderText : MonoBehaviour
     [SerializeField] TextAlignment textAlignment;
 
     [SerializeField] RenderTexture renderTexture;
+    [SerializeField] Vector2Int renderTextureSize = new Vector2Int(4096, 4096);
+
     [SerializeField] Font font;
     [SerializeField] int fontSize;
     [SerializeField] FontStyle fontStyle;
+
+    [SerializeField] LayerMask cullingMask;
 
     public FontStyle FontStyle
     {
@@ -35,6 +39,7 @@ public class RenderText : MonoBehaviour
             Invalidate();
         }
     }
+
     public TextAnchor TextPositioning
     {
         get => textPositioning;
@@ -55,12 +60,38 @@ public class RenderText : MonoBehaviour
         }
     }
 
+    public Vector2Int TextureSize
+    {
+        get => renderTextureSize;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         // 0 1 2
         // 3 4 5
         // 6 7 8
+        if (cullingMask == 0)
+            cullingMask = LayerMask.GetMask("Text");
+
+        if (gameObject.TryGetComponent(out AudioListener audio))
+            Destroy(audio);
+
+        if (cam == null)
+            cam = gameObject.AddComponent<Camera>();
+
+        if (renderTexture == null)
+            renderTexture = new RenderTexture(renderTextureSize.x, renderTextureSize.y, 0);
+        else
+            renderTextureSize = new Vector2Int(renderTextureSize.x, renderTextureSize.y);
+
+        //Debug.Log("Start");
+
+        cam.clearFlags = CameraClearFlags.SolidColor;
+        cam.backgroundColor = Color.black;
+        cam.targetTexture = renderTexture;
+        cam.orthographic = true;
+        cam.cullingMask = cullingMask;
 
         Invalidate();
     }
@@ -69,6 +100,7 @@ public class RenderText : MonoBehaviour
     {
         // Set up
         cam.orthographicSize = size;
+        textMesh.text = text;
         textMesh.anchor = TextPositioning;
         textMesh.alignment = textAlignment;
         textMesh.font = font;
@@ -96,4 +128,27 @@ public class RenderText : MonoBehaviour
         GL.Clear(true, true, Color.clear);
     }
 
+    public Texture2D GetTexture2D()
+    {
+        cam.Render();
+
+        RenderTexture.active = renderTexture;
+
+        var tex = new Texture2D(renderTextureSize.x, renderTextureSize.y);
+        tex.ReadPixels(new Rect(0, 0, renderTextureSize.x, renderTextureSize.y), 0, 0);
+        tex.Apply();
+
+        return tex;
+    }
+
+    public void StoreToTexture2D(Texture2D tex)
+    {
+        cam.Render();
+
+        RenderTexture.active = renderTexture;
+        //Debug.Log("Store");
+
+        tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
+        tex.Apply();
+    }
 }

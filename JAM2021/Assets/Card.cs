@@ -1,38 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public Color marco;
-    public Color secundario;
-    public Color imagen;
-    public Color texto;
-    public Color esquinas;
+    //public Material m_imagen;
+    //public Material m_texto;
 
-    public Material m_marco;
-    public Material m_secundario;
-    public Material m_imagen;
-    public Material m_texto;
-    public Material m_esquinas;
+    //public TextMesh tm;
+    public RenderText renderText;
 
-    public TextMesh tm;
+    [SerializeField] Texture2D image;
+    [SerializeField] string text;
+    [SerializeField] string textReferenceName;
+
+    public string Text
+    {
+        get => text;
+        set
+        {
+            text = value;
+            renderText.Text = text;
+            renderText.StoreToTexture2D(savedTex);
+
+            ren.sharedMaterials[4].SetTexture(textReference, savedTex);
+        }
+    }
+
+    public Texture2D Image
+    {
+        get => image;
+        set
+        {
+            image = value;
+
+            ren.sharedMaterials[3].mainTexture = image;
+        }
+    }
+
+    int textReference = 0;
 
     Renderer ren;
+    Texture2D savedTex;
 
     // Start is called before the first frame update
     void Start()
     {
         ren = GetComponent<Renderer>();
-        ren.sharedMaterials[0] = m_marco;
-        ren.sharedMaterials[1] = m_imagen;
-        ren.sharedMaterials[2] = m_secundario;
-        ren.sharedMaterials[3] = m_esquinas;
-        ren.sharedMaterials[4] = m_texto;
 
-        tm = gameObject.AddComponent<TextMesh>();
-        //tm.text = "Hola";
+        textReference = Shader.PropertyToID(textReferenceName);
 
+        var size = renderText.TextureSize;
+        savedTex = new Texture2D(size.x, size.y);
+
+        Text = text;
+        Image = image;
     }
 
     // Update is called once per frame
