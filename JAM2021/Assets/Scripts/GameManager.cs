@@ -164,17 +164,20 @@ public class GameManager : MonoBehaviour
 
     public void ShowEKey()
     {
+        if (!canvasInstance) return;
         Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
         eKey.GetComponent<Text>().enabled = true;
     }
     public void HideEKey()
     {
+        if (!canvasInstance) return;
         Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
         eKey.GetComponent<Text>().enabled = false;
     }
 
     public bool IsEKeyActive()
     {
+        if (!canvasInstance) return false;
         Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
         return eKey.GetComponent<Text>().IsActive();
     }
