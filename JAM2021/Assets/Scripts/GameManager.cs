@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public void setCanvas()
     {
         canvasInstance = GameObject.Find("Canvas");
-        cardsSD = canvasInstance.transform.GetChild(2).GetComponent<CardsSelectorDisplay>();
+        cardsSD = canvasInstance.GetComponentInChildren<CardsSelectorDisplay>();
     }
 
     int typeWeapon = 0, typeSpell = 0, typeSupport = 0;

@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         if (m != 0) GameManager.Instance.MoveCursor(m);
         //Botones numericos
         int numberPressed = inputHandler.GetNumberPressed();
-        if(numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
+        if (numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
     }
 
     void GroundCheck()
