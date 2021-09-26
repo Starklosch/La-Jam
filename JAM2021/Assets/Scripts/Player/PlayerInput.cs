@@ -107,16 +107,6 @@ public class PlayerInput : MonoBehaviour
         return false;
     }
 
-    public bool GetSprintInputHeld()
-    {
-        if (CanProcessInput())
-        {
-            return Input.GetButton("Sprint");
-        }
-
-        return false;
-    }
-
     float GetMouseOrStickLookAxis(string mouseInputName, string stickInputName)
     {
         if (CanProcessInput())

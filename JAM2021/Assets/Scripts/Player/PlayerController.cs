@@ -197,63 +197,63 @@ public class PlayerController : MonoBehaviour
         
 
         //Movimiento del player
-        bool isSprinting = inputHandler.GetSprintInputHeld();
+        bool isSprinting = false;
+        
+        float speedModifier = isSprinting ? sprintSpeedModifier : 1f;
+
+        //Convierte el input de movimiento a worldspace basado en la orientacion del player transform
+        Vector3 worldspaceMoveInput = transform.TransformVector(inputHandler.GetMoveInput());
+        //Debug.Log(IsGrounded);
+        //Gestion de tocar el suelo
+        if (IsGrounded)
         {
+            //Calcular velocidad deseada basandose en inputs, velocidad maxima y slope
+            Vector3 targetVelocity = worldspaceMoveInput * maxSpeedOnGround * speedModifier;
 
-            float speedModifier = isSprinting ? sprintSpeedModifier : 1f;
+            targetVelocity = GetDirectionReorientedOnSlope(targetVelocity.normalized, groundNormal) * targetVelocity.magnitude;
 
-            //Convierte el input de movimiento a worldspace basado en la orientacion del player transform
-            Vector3 worldspaceMoveInput = transform.TransformVector(inputHandler.GetMoveInput());
-            //Debug.Log(IsGrounded);
-            //Gestion de tocar el suelo
-            if (IsGrounded)
+            //Interpolacion entre la velocidad actual y la deseada, basandose en la aceleracion
+            CharacterVelocity = Vector3.Lerp(CharacterVelocity, targetVelocity, movementSharpnessOnGround * Time.deltaTime);
+
+            //Salto
+            if (IsGrounded && inputHandler.GetJumpInputDown())
             {
-                //Calcular velocidad deseada basandose en inputs, velocidad maxima y slope
-                Vector3 targetVelocity = worldspaceMoveInput * maxSpeedOnGround * speedModifier;
+                //Reseteo de velocidad en eje Y
+                CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
 
-                targetVelocity = GetDirectionReorientedOnSlope(targetVelocity.normalized, groundNormal) * targetVelocity.magnitude;
+                //Se añade la fuerza vertical de salto
+                CharacterVelocity += Vector3.up * jumpForce;
 
-                //Interpolacion entre la velocidad actual y la deseada, basandose en la aceleracion
-                CharacterVelocity = Vector3.Lerp(CharacterVelocity, targetVelocity, movementSharpnessOnGround * Time.deltaTime);
+                // play sound
+                //AudioSource.PlayOneShot(JumpSfx);
 
-                //Salto
-                if (IsGrounded && inputHandler.GetJumpInputDown())
-                {
-                    //Reseteo de velocidad en eje Y
-                    CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
+                //Se usara luego para prevenir snapping
+                lastTimeJumped = Time.time;
+                HasJumpedThisFrame = true;
 
-                    //Se añade la fuerza vertical de salto
-                    CharacterVelocity += Vector3.up * jumpForce;
-
-                    // play sound
-                    //AudioSource.PlayOneShot(JumpSfx);
-
-                    //Se usara luego para prevenir snapping
-                    lastTimeJumped = Time.time;
-                    HasJumpedThisFrame = true;
-
-                    //Reseteo de valores
-                    IsGrounded = false;
-                    groundNormal = Vector3.up;
-                }
-
+                //Reseteo de valores
+                IsGrounded = false;
+                groundNormal = Vector3.up;
             }
-            //Movimiento en el aire
-            else
-            {
-                //Sumar la acceleracion en el aire
-                CharacterVelocity += worldspaceMoveInput * accelerationSpeedInAir * Time.deltaTime;
 
-                //Limitar la velocidad en el aire
-                float verticalVelocity = CharacterVelocity.y;
-                Vector3 horizontalVelocity = Vector3.ProjectOnPlane(CharacterVelocity, Vector3.up);
-                horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, maxSpeedInAir * speedModifier);
-                CharacterVelocity = horizontalVelocity + (Vector3.up * verticalVelocity);
-
-                //Aplicar la gravedad
-                CharacterVelocity += Vector3.down * gravityDownForce * Time.deltaTime;
-            }
         }
+        //Movimiento en el aire
+        else
+        {
+            if (worldspaceMoveInput == Vector3.zero) CharacterVelocity = new Vector3(CharacterVelocity.x * 0.99f, CharacterVelocity.y, CharacterVelocity.z *0.99f);
+            //Sumar la acceleracion en el aire
+            CharacterVelocity += worldspaceMoveInput * accelerationSpeedInAir * Time.deltaTime;
+
+            //Limitar la velocidad en el aire
+            float verticalVelocity = CharacterVelocity.y;
+            Vector3 horizontalVelocity = Vector3.ProjectOnPlane(CharacterVelocity, Vector3.up);
+            horizontalVelocity = Vector3.ClampMagnitude(horizontalVelocity, maxSpeedInAir * speedModifier);
+            CharacterVelocity = horizontalVelocity + (Vector3.up * verticalVelocity);
+
+            //Aplicar la gravedad
+            CharacterVelocity += Vector3.down * gravityDownForce * Time.deltaTime;
+        }
+        
 
         //Aplicar la velocidad final como al CharacterController
         Vector3 capsuleBottomBeforeMove = transform.position + (transform.up * controller.radius);
