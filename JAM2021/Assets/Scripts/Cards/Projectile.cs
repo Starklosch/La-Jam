@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public Vector3 direction;
+
+    public event EventHandler<CollisionEventArgs> Collision;
 
     Rigidbody rb;
 
@@ -19,5 +22,20 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Collision?.Invoke(this, new CollisionEventArgs(collision));
+    }
+
+    public class CollisionEventArgs : EventArgs
+    {
+        public Collision Collision { get; private set; }
+
+        public CollisionEventArgs(Collision collision)
+        {
+            Collision = collision;
+        }
     }
 }
