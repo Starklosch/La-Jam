@@ -16,12 +16,6 @@ public class Projectile : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(direction, ForceMode.Impulse);
-        rb.useGravity = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     private void OnCollisionEnter(Collision collision)

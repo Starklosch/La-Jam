@@ -34,7 +34,38 @@ public class Spells : MonoBehaviour
 
     public void ShootSpell()
     {
-        Instantiate(prefabs[(int)currentType], hand.position, Quaternion.identity).GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward*2, ForceMode.Impulse);
+        var proj = Instantiate(prefabs[(int)currentType], hand.position, Quaternion.identity).GetComponent<Projectile>();
+        proj.direction = Camera.main.transform.forward;
+
+        switch (currentType)
+        {
+            case SpellType.Poison:
+                proj.Collision += (sender, args) =>
+                {
+                    Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
+                    if (e) e.Poison();
+                    Projectile projComponent = (Projectile)sender;
+                    Destroy(projComponent.gameObject);
+                };
+                break;
+            case SpellType.Stun:
+                proj.Collision += (sender, args) =>
+                {
+                    Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
+                    if (e) e.Stun();
+                    Projectile projComponent = (Projectile)sender;
+                    Destroy(projComponent.gameObject);
+                };
+                break;
+            case SpellType.FireBall:
+                proj.Collision += (sender, args) =>
+                {
+                    Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
+                    Projectile projComponent = (Projectile)sender;
+                    Destroy(projComponent.gameObject);
+                };
+                break;
+        }
     }
 
     public void ActivateSpell(GameManager.Cards c)

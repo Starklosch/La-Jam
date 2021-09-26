@@ -41,4 +41,14 @@ public class Enemy : MonoBehaviour
     {
         healthSlider.value = health;
     }
+
+    public void Poison()
+    {
+        Debug.Log("To implement poison");
+    }
+
+    public void Stun()
+    {
+        Debug.Log("To implement stun");
+    }
 }

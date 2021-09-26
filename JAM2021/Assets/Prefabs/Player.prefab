@@ -528,9 +528,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 0}
-  - {fileID: 2766011828449303798, guid: e6efd244eed4a6d4bbefd97ce379148e, type: 3}
-  - {fileID: 2766011828449303798, guid: e6efd244eed4a6d4bbefd97ce379148e, type: 3}
+  - {fileID: 6640066083630795899, guid: 51c9b89813dfa1d42b166257ebbfcb29, type: 3}
+  - {fileID: 6640066083630795899, guid: 51c9b89813dfa1d42b166257ebbfcb29, type: 3}
+  - {fileID: 6640066083630795899, guid: 51c9b89813dfa1d42b166257ebbfcb29, type: 3}
 --- !u!1 &6541556074586385796
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         hand[0] = Cards.Sword;
-        hand[1] = Cards.FireBall;
+        hand[1] = Cards.Poison;
         hand[2] = Cards.Speed;
     }
 
