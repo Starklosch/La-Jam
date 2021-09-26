@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
         inputHandler = GetComponent<PlayerInput>();
 
         controller.enableOverlapRecovery = true;
+
+        GameManager.Instance.SetPlayer(gameObject);
     }
 
     void Update()
@@ -95,10 +97,16 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterInput()
     {
+        if (inputHandler.GetKeyDownInput(KeyCode.F))
+        {
+            GameManager.Instance.UseCard();
+        }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())
         {
-            GameManager.Instance.UseCard();
+            //Si es un arma, pegar
+            //Si es una hechizo, lanzar
+            //Si es un bufo, activar
         }
         //Rueda del raton
         int m = inputHandler.GetMouseWheelDirection();

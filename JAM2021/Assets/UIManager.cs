@@ -14,7 +14,7 @@ public class UIManager : MonoBehaviour
         cardsSelectorDisplay = GetComponentInChildren<CardsSelectorDisplay>();
         eKey = transform.Find("PlayerUI").Find("KeyE");
         chestPanels = transform.Find("ChestPanels");
-        GameManager.Instance.setCanvas();
+        GameManager.Instance.SetCanvas(this);
     }
 
     public void UpdateCursor(int i)

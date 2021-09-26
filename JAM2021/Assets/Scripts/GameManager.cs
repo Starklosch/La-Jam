@@ -43,10 +43,15 @@ public class GameManager : MonoBehaviour
     }
 
     UIManager UIManagerInstance;
+    GameObject playerInstance;
 
-    public void setCanvas()
+    public void SetCanvas(UIManager mI)
     {
-        UIManagerInstance = GameObject.Find("Canvas").GetComponent<UIManager>();
+        UIManagerInstance = mI;
+    }
+    public void SetPlayer(GameObject pGO)
+    {
+        playerInstance = pGO;
     }
 
     Queue<Cards> deck = new Queue<Cards>();
@@ -56,11 +61,17 @@ public class GameManager : MonoBehaviour
 
     public enum Cards
     {
+        //Melee weapons
         Sword,
+        Axe,
         Hammer,
-        Teleport,
+        //Spells
         Poison,
+        Stun,
+        FireBall,
+        //Support
         Speed,
+        Damage,
         Heal,
         None
     }
@@ -68,10 +79,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         hand[0] = Cards.Sword;
-        hand[1] = Cards.Teleport;
-        hand[2] = Cards.Heal;
-
-        setCanvas();
+        hand[1] = Cards.FireBall;
+        hand[2] = Cards.Speed;
     }
 
     Cards chestCardHolding = Cards.None;
@@ -164,17 +173,28 @@ public class GameManager : MonoBehaviour
         switch (hand[cursorIndex])
         {
             case Cards.Sword:
-                //Las de tipo arma instanciaran un objeto desde GameManager y se comunicaran con un componente Weapon del jugador para indicar que tiene x arma.
+                //Las de tipo arma instanciaran/activaran un objeto desde GameManager y se comunicaran con un componente Weapon del jugador para indicar que tiene x arma.
+                playerInstance.GetComponent<Weapons>().ActivateWeapon(Cards.Sword);
+                break;
+            case Cards.Axe:
+                playerInstance.GetComponent<Weapons>().ActivateWeapon(Cards.Axe);
                 break;
             case Cards.Hammer:
+                playerInstance.GetComponent<Weapons>().ActivateWeapon(Cards.Hammer);
                 break;
-            case Cards.Teleport:
+
+            case Cards.Poison:
                 //Las de tipo hechizo se comunican con un componente ThrowSpell del jugador, para lanzar la carta y realizar el efecto.
                 break;
-            case Cards.Poison:
+            case Cards.Stun:
                 break;
+            case Cards.FireBall:
+                break;
+
             case Cards.Speed:
                 //Las de tipo soporte llaman a metodos del componente Support del jugador para aplicar sus efectos.
+                break;
+            case Cards.Damage:
                 break;
             case Cards.Heal:
                 break;
@@ -191,6 +211,7 @@ public class GameManager : MonoBehaviour
 
             ShuffleDiscarded();
             MoveDiscardedToDeck();
+            //Poner 3 en mano
             for(int i = 0; i < 3; i++)
             {
                 hand[i] = RemoveFromDeck();
