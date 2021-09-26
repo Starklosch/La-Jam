@@ -64,8 +64,17 @@ public class GameManager : MonoBehaviour
     Cards[] hand = new Cards[3];
     int cursorIndex = 0;
 
+    public enum CardType
+    {
+        Undefined,
+        Weapon,
+        Spell,
+        Support
+    }
+
     public enum Cards
     {
+        None = 0,
         //Melee weapons
         Sword,
         Axe,
@@ -77,8 +86,7 @@ public class GameManager : MonoBehaviour
         //Support
         Speed,
         Damage,
-        Heal,
-        None
+        Heal
     }
 
     private void Start()
@@ -89,6 +97,31 @@ public class GameManager : MonoBehaviour
     }
 
     Cards chestCardHolding = Cards.None;
+    Weapons weaponsComponent;
+    Spells spellComponent;
+
+    Weapons WeaponsComponent
+    {
+        get
+        {
+            if (weaponsComponent == null)
+                weaponsComponent = playerInstance.GetComponent<Weapons>();
+
+            return weaponsComponent;
+        }
+    }
+
+    Spells SpellsComponent
+    {
+        get
+        {
+            if (spellComponent == null)
+                spellComponent = playerInstance.GetComponent<Spells>();
+
+            return spellComponent;
+        }
+    }
+
     public void AcceptChest()
     {
         if(chestCardHolding != Cards.None)
@@ -184,13 +217,13 @@ public class GameManager : MonoBehaviour
         {
             case Cards.Sword:
                 //Las de tipo arma instanciaran/activaran un objeto desde GameManager y se comunicaran con un componente Weapon del jugador para indicar que tiene x arma.
-                playerInstance.GetComponent<Weapons>().ActivateWeapon(Cards.Sword);
+                WeaponsComponent.ActivateWeapon(Cards.Sword);
                 break;
             case Cards.Axe:
-                playerInstance.GetComponent<Weapons>().ActivateWeapon(Cards.Axe);
+                WeaponsComponent.ActivateWeapon(Cards.Axe);
                 break;
             case Cards.Hammer:
-                playerInstance.GetComponent<Weapons>().ActivateWeapon(Cards.Hammer);
+                WeaponsComponent.ActivateWeapon(Cards.Hammer);
                 break;
 
             case Cards.Poison:
@@ -199,6 +232,7 @@ public class GameManager : MonoBehaviour
             case Cards.Stun:
                 break;
             case Cards.FireBall:
+                SpellsComponent.FireBall(playerInstance.GetComponent<PlayerController>());
                 break;
 
             case Cards.Speed:
