@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Distancia desde los pies de la capsula para comprobar el suelo")]
     public float groundCheckDistance = 0.05f;
 
+    [Tooltip("Distancia a un interactuable para que se enseñe el boton E")]
+    public float showEDistance = 3f;
+
     [Header("Movimiento")]
     [Tooltip("Maxima speed en el suelo")]
     public float maxSpeedOnGround = 10f;
@@ -99,12 +102,18 @@ public class PlayerController : MonoBehaviour
     {
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
+            GameManager.Cards c = GameManager.Instance.GetCardSelected();
+            if(c!=GameManager.Cards.None && GetComponent<ManaSystem>().UseMana(10/*SACAR EL MANA CORRESPONDIENTE A c DE LOS SCRIPTABLE OBJECTS*/))
             GameManager.Instance.UseCard();
         }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())
         {
             //Si es un arma, pegar
+            if (GetComponent<Weapons>().HasWeaponInHand())
+            {
+                GetComponent<Weapons>().UseWeapon();
+            }
             //Si es una hechizo, lanzar
             //Si es un bufo, activar
         }
@@ -119,7 +128,7 @@ public class PlayerController : MonoBehaviour
     void AimCheck()
     {
         RaycastHit hit;
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, showEDistance))
         {
             Chest c = hit.transform.GetComponent<Chest>();
             if (c)
@@ -139,7 +148,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Instance.HideEKey();
         }
-        Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 10f, Color.red);
+        Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * showEDistance, Color.red);
     }
 
     void GroundCheck()

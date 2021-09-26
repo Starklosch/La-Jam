@@ -11,6 +11,8 @@ public class Golem : Enemy
     {
         base.Start();
         healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
+        health = maxHealth;
     }
     public override void Heal(int h)
     {

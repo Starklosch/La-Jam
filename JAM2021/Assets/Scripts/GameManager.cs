@@ -49,6 +49,11 @@ public class GameManager : MonoBehaviour
     {
         UIManagerInstance = mI;
     }
+
+    public UIManager GetCanvas()
+    {
+        return UIManagerInstance;
+    }
     public void SetPlayer(GameObject pGO)
     {
         playerInstance = pGO;
@@ -167,9 +172,14 @@ public class GameManager : MonoBehaviour
         discarded.Clear();
     }
 
+    public Cards GetCardSelected()
+    {
+        return hand[cursorIndex];
+    }
+
     public void UseCard()
     {
-        if (hand[cursorIndex] == Cards.None /*|| CD*/) return;
+        if (GetCardSelected() == Cards.None /*|| CD*/) return;
         switch (hand[cursorIndex])
         {
             case Cards.Sword:

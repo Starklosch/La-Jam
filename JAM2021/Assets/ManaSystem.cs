@@ -68,15 +68,16 @@ public class ManaSystem : MonoBehaviour
         }
     }
 
-    public void UseMana(float mana)
+    public bool UseMana(float mana)
     {
         if (mana > Mana)
         {
             Debug.LogError("Not enough mana.");
-            return;
+            return false;
         }
 
         Mana -= mana;
+        return true;
     }
 
     public void Heal(float healing)
