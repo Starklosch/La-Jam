@@ -79,6 +79,8 @@ public class PlayerController : MonoBehaviour
 
         bool wasGrounded = IsGrounded;
         GroundCheck();
+        //Apuntado
+        AimCheck();
 
         //Aterrizar
         if (IsGrounded && !wasGrounded)
@@ -93,12 +95,43 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterInput()
     {
+        if (inputHandler.GetKeyDownInput(KeyCode.E) && GameManager.Instance.IsEKeyActive())
+        {
+
+        }
+        //Click izquierdo
+        if (inputHandler.GetActionInputDown())
+        {
+            GameManager.Instance.UseCard();
+        }
         //Rueda del raton
         int m = inputHandler.GetMouseWheelDirection();
         if (m != 0) GameManager.Instance.MoveCursor(m);
         //Botones numericos
         int numberPressed = inputHandler.GetNumberPressed();
         if (numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
+    }
+
+    void AimCheck()
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10f))
+        {
+            Chest c = hit.transform.GetComponent<Chest>();
+            if (c)
+            {
+                GameManager.Instance.ShowEKey();
+            }
+            else
+            {
+                GameManager.Instance.HideEKey();
+            }
+        }
+        else if (GameManager.Instance.IsEKeyActive())
+        {
+            GameManager.Instance.HideEKey();
+        }
+        Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * 10f, Color.red);
     }
 
     void GroundCheck()

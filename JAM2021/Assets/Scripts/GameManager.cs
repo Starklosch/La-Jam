@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
     }
 
     GameObject canvasInstance;
+    GameObject cardChestPanel;
     CardsSelectorDisplay cardsSD;
 
     public void setCanvas()
@@ -30,7 +33,6 @@ public class GameManager : MonoBehaviour
         cardsSD = canvasInstance.GetComponentInChildren<CardsSelectorDisplay>();
     }
 
-    int typeWeapon = 0, typeSpell = 0, typeSupport = 0;
     Queue<Cards> deck = new Queue<Cards>();
     List<Cards> discarded = new List<Cards>();
     Cards[] hand = new Cards[3];
@@ -49,9 +51,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        deck.Enqueue(Cards.Sword);
-        deck.Enqueue(Cards.Teleport);
-        deck.Enqueue(Cards.Heal);
         hand[0] = Cards.Sword;
         hand[1] = Cards.Teleport;
         hand[2] = Cards.Heal;
@@ -98,7 +97,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var c in discarded)
         {
-            deck.Enqueue(c);
+            AddToDeck(c);
         }
         discarded.Clear();
     }
@@ -161,5 +160,22 @@ public class GameManager : MonoBehaviour
     {
         cursorIndex = i;
         cardsSD.UpdateCursorUI(cursorIndex);
+    }
+
+    public void ShowEKey()
+    {
+        Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
+        eKey.GetComponent<Text>().enabled = true;
+    }
+    public void HideEKey()
+    {
+        Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
+        eKey.GetComponent<Text>().enabled = false;
+    }
+
+    public bool IsEKeyActive()
+    {
+        Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
+        return eKey.GetComponent<Text>().IsActive();
     }
 }

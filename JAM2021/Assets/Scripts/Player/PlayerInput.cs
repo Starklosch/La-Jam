@@ -74,6 +74,19 @@ public class PlayerInput : MonoBehaviour
         return 0;
     }
 
+    public bool GetKeyDownInput(KeyCode k)
+    {
+        return Input.GetKeyDown(k);
+    }
+
+    public bool GetActionInputDown()
+    {
+        if (CanProcessInput())
+        {
+            return Input.GetButtonDown("Fire");
+        }
+        return false;
+    }
     public bool GetJumpInputDown()
     {
         if (CanProcessInput())
