@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
 
     public enum Cards
     {
-        None = 0,
         //Melee weapons
         Sword,
         Axe,
@@ -86,7 +85,9 @@ public class GameManager : MonoBehaviour
         //Support
         Speed,
         Damage,
-        Heal
+        Heal,
+
+        None
     }
 
     private void Start()
@@ -217,22 +218,31 @@ public class GameManager : MonoBehaviour
         {
             case Cards.Sword:
                 //Las de tipo arma instanciaran/activaran un objeto desde GameManager y se comunicaran con un componente Weapon del jugador para indicar que tiene x arma.
+                SpellsComponent.DisableSpell();
                 WeaponsComponent.ActivateWeapon(Cards.Sword);
                 break;
             case Cards.Axe:
+                SpellsComponent.DisableSpell();
                 WeaponsComponent.ActivateWeapon(Cards.Axe);
                 break;
             case Cards.Hammer:
+                SpellsComponent.DisableSpell();
                 WeaponsComponent.ActivateWeapon(Cards.Hammer);
                 break;
 
             case Cards.Poison:
                 //Las de tipo hechizo se comunican con un componente ThrowSpell del jugador, para lanzar la carta y realizar el efecto.
+                WeaponsComponent.DisableWeapon();
+                SpellsComponent.ActivateSpell(Cards.Poison);
                 break;
             case Cards.Stun:
+                WeaponsComponent.DisableWeapon();
+                SpellsComponent.ActivateSpell(Cards.Stun);
                 break;
             case Cards.FireBall:
-                SpellsComponent.FireBall(playerInstance.GetComponent<PlayerController>());
+                WeaponsComponent.DisableWeapon();
+                SpellsComponent.ActivateSpell(Cards.FireBall);
+                //SpellsComponent.FireBall(playerInstance.GetComponent<PlayerController>());
                 break;
 
             case Cards.Speed:

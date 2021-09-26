@@ -93,7 +93,8 @@ GameObject:
   - component: {fileID: 756632458}
   - component: {fileID: 756632457}
   - component: {fileID: 756632456}
-  m_Layer: 7
+  - component: {fileID: 756632459}
+  m_Layer: 9
   m_Name: MeleeHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +177,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &756632459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756632454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59de8024e51c0424bbb8072245f6b3c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponsComponent: {fileID: 1665116620}
 --- !u!1 &1314466175
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,6 +399,7 @@ GameObject:
   - component: {fileID: 6541556074380946793}
   - component: {fileID: 6541556074380946797}
   - component: {fileID: 1665116620}
+  - component: {fileID: 1665116621}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -500,6 +515,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa08e02205b332647954c531ce682572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1665116621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6541556074380946790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea66811e97f8024bb076bfcbe3b8738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 0}
+  - {fileID: 2766011828449303798, guid: e6efd244eed4a6d4bbefd97ce379148e, type: 3}
+  - {fileID: 2766011828449303798, guid: e6efd244eed4a6d4bbefd97ce379148e, type: 3}
 --- !u!1 &6541556074586385796
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,7 +596,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 247
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

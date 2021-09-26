@@ -114,6 +114,10 @@ public class PlayerController : MonoBehaviour
             {
                 GetComponent<Weapons>().UseWeapon();
             }
+            else if (GetComponent<Spells>().HasSpellInHand())
+            {
+                GetComponent<Spells>().ShootSpell();
+            }
             //Si es una hechizo, lanzar
             //Si es un bufo, activar
         }

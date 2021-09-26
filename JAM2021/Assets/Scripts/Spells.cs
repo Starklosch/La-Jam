@@ -5,25 +5,60 @@ using UnityEngine;
 
 public class Spells : MonoBehaviour
 {
-    public GameObject prefabFireBall;
+    public enum SpellType
+    {
+        //**Same order as Cards Enum***
+        Poison,
+        Stun,
+        FireBall,
 
-    // Start is called before the first frame update
+        None
+    }
+    //**Same order as SpellType order
+    public GameObject[] prefabs;
+    Transform hand;
+    bool hasSpell;
+    SpellType currentType;
+
     void Start()
     {
-        
+        currentType = SpellType.None;
+        hasSpell = false;
+        hand = transform.Find("Main Camera").Find("PlayerHand");
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool HasSpellInHand()
     {
-        
+        return hasSpell;
     }
 
-    public void FireBall(PlayerController controller)
+    public void ShootSpell()
     {
-        var fb = Instantiate(prefabFireBall, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        Instantiate(prefabs[(int)currentType], hand.position, Quaternion.identity).GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward*2, ForceMode.Impulse);
+    }
 
-        fb.direction = controller.playerCamera.transform.forward;
+    public void ActivateSpell(GameManager.Cards c)
+    {
+        DisableSpell();
 
+        switch (c)
+        {
+            case GameManager.Cards.Poison:
+                currentType = SpellType.Poison;
+                break;
+            case GameManager.Cards.Stun:
+                currentType = SpellType.Stun;
+                break;
+            case GameManager.Cards.FireBall:
+                currentType = SpellType.FireBall;
+                break;
+        }
+        hasSpell = true;
+    }
+
+    public void DisableSpell()
+    {
+        currentType = SpellType.None;
+        hasSpell = false;
     }
 }

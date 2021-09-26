@@ -45,6 +45,7 @@ public class Weapons : MonoBehaviour
         currentWeapon = hand.GetChild((int)c).gameObject;
         currentWeapon.SetActive(true);
         hasWeapon = true;
+        GameManager.Instance.GetCanvas().ShowDurabilityBar(true);
         switch ((WeaponType)c)
         {
             case WeaponType.Sword:
@@ -75,6 +76,7 @@ public class Weapons : MonoBehaviour
         currentWeapon = null;
         hasWeapon = false;
         currentDamage = 0;
+        GameManager.Instance.GetCanvas().ShowDurabilityBar(false);
     }
 
     public bool HasWeaponInHand()
@@ -86,11 +88,15 @@ public class Weapons : MonoBehaviour
     {
         if (cooldown > Time.time - lastTime) return;
 
-        currentDurability--;
-        GameManager.Instance.GetCanvas().SetWDurabilitySliderValue(currentDurability);
-        if (currentDurability <= 0) DisableWeapon();
         hit.SetActive(true);
 
         lastTime = Time.time;
+    }
+
+    public void UseDurability()
+    {
+        currentDurability--;
+        GameManager.Instance.GetCanvas().SetWDurabilitySliderValue(currentDurability);
+        if (currentDurability <= 0) DisableWeapon();
     }
 }

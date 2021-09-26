@@ -19,6 +19,11 @@ public class UIManager : MonoBehaviour
         weaponDurabilityBar = transform.Find("WeaponDurabilityBar");
     }
 
+    public void ShowDurabilityBar(bool b)
+    {
+        weaponDurabilityBar.gameObject.SetActive(b);
+    }
+
     public void SetWDurabilitySliderMax(int i)
     {
         weaponDurabilityBar.GetComponent<Slider>().maxValue = i;
