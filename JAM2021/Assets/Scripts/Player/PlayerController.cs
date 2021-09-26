@@ -95,10 +95,6 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterInput()
     {
-        if (inputHandler.GetKeyDownInput(KeyCode.E) && GameManager.Instance.IsEKeyActive())
-        {
-
-        }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())
         {
@@ -120,7 +116,11 @@ public class PlayerController : MonoBehaviour
             Chest c = hit.transform.GetComponent<Chest>();
             if (c)
             {
-                GameManager.Instance.ShowEKey();
+                if (!c.isOpen()) GameManager.Instance.ShowEKey();
+                if (inputHandler.GetKeyDownInput(KeyCode.E) && GameManager.Instance.IsEKeyActive())
+                {
+                    c.Open();
+                }
             }
             else
             {

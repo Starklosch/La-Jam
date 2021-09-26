@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    bool isOpen;
+    bool isOpen_;
 
     void Start()
     {
-        isOpen = false;
+        isOpen_ = false;
     }
     
     public void Open()
     {
-        if (isOpen)
+        if (isOpen_)
         {
             //Mensaje de que ya ha sido abierto o no hacer nada
             return;
         }
         else
         {
-            isOpen = true;
-
+            isOpen_ = true;
+            GameManager.Instance.HideEKey();
+            GameManager.Instance.OpenChest();
         }
+    }
+
+    public bool isOpen()
+    {
+        return isOpen_;
     }
 }
