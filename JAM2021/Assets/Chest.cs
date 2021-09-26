@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
+
+    public enum ChestType
+    {
+        Reward,
+        Trap,
+        ForcedTrade,
+        None
+    }
+
     bool isOpen_;
 
     void Start()
@@ -20,6 +29,7 @@ public class Chest : MonoBehaviour
         }
         else
         {
+            //Cambiar modelo a cofre abierto
             isOpen_ = true;
             GameManager.Instance.HideEKey();
             GameManager.Instance.OpenChest();

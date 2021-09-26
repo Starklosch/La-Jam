@@ -26,8 +26,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool CanProcessInput()
     {
-        //Debug.Log(Cursor.lockState);
-        return Cursor.lockState == CursorLockMode.Locked /*&& (JUEGO NO HA TERMINADO)*/;
+        return Cursor.lockState == CursorLockMode.Locked && !GameManager.Instance.isGamePaused();
     }
 
     public int GetNumberPressed()
@@ -76,7 +75,8 @@ public class PlayerInput : MonoBehaviour
 
     public bool GetKeyDownInput(KeyCode k)
     {
-        return Input.GetKeyDown(k);
+        if (k == KeyCode.Escape) return Input.GetKeyDown(k);
+        else return Input.GetKeyDown(k) && CanProcessInput();
     }
 
     public bool GetActionInputDown()

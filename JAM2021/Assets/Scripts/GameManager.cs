@@ -20,17 +20,33 @@ public class GameManager : MonoBehaviour
         else
         {
             _instance = this;
+            DontDestroyOnLoad(this);
         }
     }
 
-    GameObject canvasInstance;
-    GameObject cardChestPanel;
-    CardsSelectorDisplay cardsSD;
+    public void SceneSwitch(string name)
+    {
+        SceneManager.LoadScene(name);
+    }
+
+    bool isPaused = false;
+    public bool isGamePaused()
+    {
+        return isPaused;
+    }
+
+    public void SetPause(bool a)
+    {
+        Time.timeScale = (a) ? 0 : 1;
+        Cursor.lockState = a ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.visible = a;
+    }
+
+    UIManager UIManagerInstance;
 
     public void setCanvas()
     {
-        canvasInstance = GameObject.Find("Canvas");
-        cardsSD = canvasInstance.GetComponentInChildren<CardsSelectorDisplay>();
+        UIManagerInstance = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     Queue<Cards> deck = new Queue<Cards>();
@@ -58,10 +74,50 @@ public class GameManager : MonoBehaviour
         setCanvas();
     }
 
+    Cards chestCardHolding = Cards.None;
+    public void AcceptChest()
+    {
+        if(chestCardHolding != Cards.None)
+        {
+            deck.Enqueue(chestCardHolding);
+            chestCardHolding = Cards.None;
+        }
+        SetPause(false);
+    }
+
+    public void DiscardChest()
+    {
+        chestCardHolding = Cards.None;
+        SetPause(false);
+    }
+
     public void OpenChest()
     {
-        //Random card
-        //Dependiendo si se acepta o no se añade al deck
+        SetPause(true);
+        //Bad luck prevention
+        if (deck.Count < 1)
+        {
+            chestCardHolding = (Cards)Random.Range(0, (int)Cards.None);
+            UIManagerInstance.ShowChestPanel(0, chestCardHolding);
+        }
+        else
+        {
+            int randomChest = Random.Range(0, (int)Chest.ChestType.None);
+            switch ((Chest.ChestType)randomChest)
+            {
+                case Chest.ChestType.Reward:
+                    chestCardHolding = (Cards)Random.Range(0, (int)Cards.None);
+                    UIManagerInstance.ShowChestPanel(0, chestCardHolding);
+                    break;
+                case Chest.ChestType.Trap:
+                    UIManagerInstance.ShowChestPanel(0, Cards.None, deck.Dequeue());
+                    break;
+                case Chest.ChestType.ForcedTrade:
+                    chestCardHolding = (Cards)Random.Range(0, (int)Cards.None);
+                    UIManagerInstance.ShowChestPanel(0, chestCardHolding, deck.Dequeue());
+                    break;
+            }
+        }
     }
 
     public void AddToDeck(Cards card)
@@ -153,32 +209,30 @@ public class GameManager : MonoBehaviour
         if (cursorIndex < 0) cursorIndex = 2;
         else if (cursorIndex > 2) cursorIndex = 0;
 
-        cardsSD.UpdateCursorUI(cursorIndex);
+        UIManagerInstance.UpdateCursor(cursorIndex);
     }
 
     public void SetCursor(int i)
     {
         cursorIndex = i;
-        cardsSD.UpdateCursorUI(cursorIndex);
+        UIManagerInstance.UpdateCursor(cursorIndex);
     }
 
     public void ShowEKey()
     {
-        if (!canvasInstance) return;
-        Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
-        eKey.GetComponent<Text>().enabled = true;
+        if (!UIManagerInstance) return;
+
+        UIManagerInstance.ShowE();
     }
     public void HideEKey()
     {
-        if (!canvasInstance) return;
-        Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
-        eKey.GetComponent<Text>().enabled = false;
+        if (!UIManagerInstance) return;
+        UIManagerInstance.HideE();
     }
 
     public bool IsEKeyActive()
     {
-        if (!canvasInstance) return false;
-        Transform eKey = canvasInstance.transform.Find("PlayerUI").Find("KeyE");
-        return eKey.GetComponent<Text>().IsActive();
+        if (!UIManagerInstance) return false;
+        return UIManagerInstance.IsEActive();
     }
 }
