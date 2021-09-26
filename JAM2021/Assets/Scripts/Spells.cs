@@ -66,6 +66,8 @@ public class Spells : MonoBehaviour
                 };
                 break;
         }
+
+        DisableSpell();
     }
 
     public void ActivateSpell(GameManager.Cards c)
