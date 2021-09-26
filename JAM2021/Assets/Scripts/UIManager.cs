@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
 
     CardsSelectorDisplay cardsSelectorDisplay;
+    Transform weaponDurabilityBar;
     Transform eKey;
     Transform chestPanels;
     void Start()
@@ -14,7 +15,18 @@ public class UIManager : MonoBehaviour
         cardsSelectorDisplay = GetComponentInChildren<CardsSelectorDisplay>();
         eKey = transform.Find("PlayerUI").Find("KeyE");
         chestPanels = transform.Find("ChestPanels");
-        GameManager.Instance.setCanvas();
+        GameManager.Instance.SetCanvas(this);
+        weaponDurabilityBar = transform.Find("WeaponDurabilityBar");
+    }
+
+    public void SetWDurabilitySliderMax(int i)
+    {
+        weaponDurabilityBar.GetComponent<Slider>().maxValue = i;
+    }
+
+    public void SetWDurabilitySliderValue(int i)
+    {
+        weaponDurabilityBar.GetComponent<Slider>().value = i;
     }
 
     public void UpdateCursor(int i)
