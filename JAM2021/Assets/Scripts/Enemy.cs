@@ -7,11 +7,37 @@ public class Enemy : MonoBehaviour
 {
     protected int health;
     protected Slider healthSlider;
+    protected bool canAnim = false;
+
+    protected int animAttackTrigger;
+
     float currentStunDuration;
     bool hasPoison;
     bool hasStun;
+
+    public Animator anim;
+    public GameManager manager;
+
+    public float attackTime;
+    public float damage;
+
+    protected float attackCooldown;
+    protected PlayerController player;
+
     public virtual void Start()
     {
+        if (anim == null && TryGetComponent(out anim))
+        {
+            canAnim = true;
+
+            animAttackTrigger = Animator.StringToHash("Attack");
+        }
+        if (manager == null)
+        {
+            manager = GameManager.Instance;
+        }
+        player = manager.PlayerInstance.GetComponent<PlayerController>();
+            
         healthSlider = transform.Find("CanvasEnemy").Find("HealthBar").GetComponent<Slider>();
     }
 
@@ -26,6 +52,31 @@ public class Enemy : MonoBehaviour
                 Debug.Log("FREE OF STUN");
             }
         }
+
+        if (player != null)
+        {
+            if (Time.time > attackCooldown && Vector3.Distance(player.transform.position, transform.position) < 1)
+            {
+                attackCooldown = Time.deltaTime + attackTime;
+
+                Attack();
+                Debug.Log("attack");
+            }
+        }
+    }
+
+    public virtual void Attack()
+    {
+        if (canAnim)
+            anim.SetTrigger(animAttackTrigger);
+
+        //anim.
+    }
+
+    public virtual void AttackEnd()
+    {
+        Debug.Log("Attack End");
+        player.Mana.Harm(damage);
     }
 
     public virtual void Heal(int h)

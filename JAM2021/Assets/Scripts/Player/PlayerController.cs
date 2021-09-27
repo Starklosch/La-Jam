@@ -71,6 +71,18 @@ public class PlayerController : MonoBehaviour
     const float groundCheckDistanceInAir = 0.07f;
 
     Buffs playerBuffs;
+    ManaSystem manaSystem;
+
+    public ManaSystem Mana
+    {
+        get
+        {
+            if (manaSystem == null)
+                manaSystem = GetComponent<ManaSystem>();
+
+            return manaSystem;
+        }
+    }
 
     void Start()
     {
@@ -110,7 +122,7 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
-            if(c!=GameManager.Cards.None && GetComponent<ManaSystem>().UseMana(10/*SACAR EL MANA CORRESPONDIENTE A c DE LOS SCRIPTABLE OBJECTS*/))
+            if(c!=GameManager.Cards.None && Mana.UseMana(10/*SACAR EL MANA CORRESPONDIENTE A c DE LOS SCRIPTABLE OBJECTS*/))
             GameManager.Instance.UseCard();
         }
         //Click izquierdo
