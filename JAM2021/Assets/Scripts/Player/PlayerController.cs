@@ -73,6 +73,8 @@ public class PlayerController : MonoBehaviour
     Buffs playerBuffs;
     ManaSystem manaSystem;
 
+    Animator anim;
+
     public ManaSystem Mana
     {
         get
@@ -92,9 +94,11 @@ public class PlayerController : MonoBehaviour
 
         controller.enableOverlapRecovery = true;
 
-        GameManager.Instance.SetPlayer(gameObject);
+        GameManager.Instance.SetPlayer(this);
 
         playerBuffs = GetComponent<Buffs>();
+
+        anim = GetComponent<Animator>();
     }
 
     void Update()

@@ -36,8 +36,8 @@ public class ManaSystem : MonoBehaviour
         private set
         {
             m_mana = Mathf.Clamp(value, 0, maxMana);
-            manaSlider.value = value;
-            manaText.text = value.ToString("0,0");
+            manaSlider.value = m_mana;
+            manaText.text = m_mana.ToString("0,0");
         }
     }
 
@@ -54,7 +54,22 @@ public class ManaSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (healthSlider == null)
+            healthSlider = GameObject.Find("Health Bar").GetComponent<Slider>();
+
+        if (manaSlider == null)
+            manaSlider = GameObject.Find("Mana Bar").GetComponent<Slider>();
+
+        if (healthText == null)
+            healthText = GameObject.Find("Health Text").GetComponent<TextMeshProUGUI>();
+
+        if (manaText == null)
+            manaText = GameObject.Find("Mana Text").GetComponent<TextMeshProUGUI>();
+
+
         // Start full health and mana
+        healthSlider.maxValue = baseHealth;
+        MaxMana = maxMana;
         Health = baseHealth;
         Mana = maxMana;
     }
@@ -88,8 +103,10 @@ public class ManaSystem : MonoBehaviour
 
     public void Harm(float damage)
     {
-        Debug.Log("Damage");
         if (Health > 0)
+        {
             Health -= damage;
+
+        }
     }
 }

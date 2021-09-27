@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     }
 
     UIManager UIManagerInstance;
-    GameObject playerInstance;
+    PlayerController playerInstance;
 
     public void SetCanvas(UIManager mI)
     {
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         return UIManagerInstance;
     }
-    public void SetPlayer(GameObject pGO)
+    public void SetPlayer(PlayerController pGO)
     {
         playerInstance = pGO;
     }
@@ -63,6 +63,26 @@ public class GameManager : MonoBehaviour
     List<Cards> discarded = new List<Cards>();
     Cards[] hand = new Cards[3];
     int cursorIndex = 0;
+
+    Dictionary<Cards, ScriptableCard> cardsData;
+
+    public IReadOnlyDictionary<Cards, ScriptableCard> CardsData
+    {
+        get
+        {
+            // Load data
+            if (cardsData == null)
+            {
+                cardsData = new Dictionary<Cards, ScriptableCard>();
+                var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
+
+                foreach (var item in cards)
+                    cardsData[item.id] = item;
+            }
+
+            return cardsData;
+        }
+    }
 
     public enum CardType
     {
@@ -135,7 +155,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject PlayerInstance { get => playerInstance; }
+    public PlayerController PlayerInstance { get => playerInstance; }
 
     public void AcceptChest()
     {

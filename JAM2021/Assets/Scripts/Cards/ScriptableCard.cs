@@ -11,5 +11,8 @@ public class ScriptableCard : ScriptableObject
     public string cardName;
     public string description;
     public float manaCost;
+    [Tooltip("For weapons")]
     public float damage;
+    [Tooltip("For spells")]
+    public float duration;
 }

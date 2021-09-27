@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     public float damage;
 
     protected float attackCooldown;
+    protected bool canAttack = true;
+
     protected PlayerController player;
 
     public virtual void Start()
@@ -36,7 +38,8 @@ public class Enemy : MonoBehaviour
         {
             manager = GameManager.Instance;
         }
-        player = manager.PlayerInstance.GetComponent<PlayerController>();
+
+        player = manager.PlayerInstance;
             
         healthSlider = transform.Find("CanvasEnemy").Find("HealthBar").GetComponent<Slider>();
     }
@@ -53,30 +56,25 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (player != null)
-        {
-            if (Time.time > attackCooldown && Vector3.Distance(player.transform.position, transform.position) < 1)
-            {
-                attackCooldown = Time.deltaTime + attackTime;
-
-                Attack();
-                Debug.Log("attack");
-            }
-        }
+        if (player == null && manager.PlayerInstance != null)
+            player = manager.PlayerInstance;
     }
 
     public virtual void Attack()
     {
+        canAttack = false;
+
         if (canAnim)
             anim.SetTrigger(animAttackTrigger);
 
-        //anim.
     }
 
     public virtual void AttackEnd()
     {
-        Debug.Log("Attack End");
+        canAttack = true;
+
         player.Mana.Harm(damage);
+        attackCooldown = Time.deltaTime + attackTime;
     }
 
     public virtual void Heal(int h)
