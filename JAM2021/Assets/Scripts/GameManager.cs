@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         FireBall,
         //Support
         Speed,
-        Damage,
+        Jump,
         Heal,
 
         None
@@ -99,7 +99,8 @@ public class GameManager : MonoBehaviour
 
     Cards chestCardHolding = Cards.None;
     Weapons weaponsComponent;
-    Spells spellComponent;
+    Spells spellsComponent;
+    Buffs buffsComponent;
 
     Weapons WeaponsComponent
     {
@@ -116,10 +117,21 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            if (spellComponent == null)
-                spellComponent = playerInstance.GetComponent<Spells>();
+            if (spellsComponent == null)
+                spellsComponent = playerInstance.GetComponent<Spells>();
 
-            return spellComponent;
+            return spellsComponent;
+        }
+    }
+
+    Buffs BuffsComponent
+    {
+        get
+        {
+            if (buffsComponent == null)
+                buffsComponent = playerInstance.GetComponent<Buffs>();
+
+            return buffsComponent;
         }
     }
 
@@ -247,10 +259,13 @@ public class GameManager : MonoBehaviour
 
             case Cards.Speed:
                 //Las de tipo soporte llaman a metodos del componente Support del jugador para aplicar sus efectos.
+                BuffsComponent.ActivateBuff(Cards.Speed);
                 break;
-            case Cards.Damage:
+            case Cards.Jump:
+                BuffsComponent.ActivateBuff(Cards.Jump);
                 break;
             case Cards.Heal:
+                BuffsComponent.ActivateBuff(Cards.Heal);
                 break;
         }
 

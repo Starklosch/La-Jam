@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 
     CardsSelectorDisplay cardsSelectorDisplay;
     Transform weaponDurabilityBar;
+    Transform buffDurationBar;
     Transform eKey;
     Transform chestPanels;
     void Start()
@@ -17,8 +18,9 @@ public class UIManager : MonoBehaviour
         chestPanels = transform.Find("ChestPanels");
         GameManager.Instance.SetCanvas(this);
         weaponDurabilityBar = transform.Find("WeaponDurabilityBar");
+        buffDurationBar = transform.Find("BuffDurationBar");
     }
-
+    //Durability of weapon
     public void ShowDurabilityBar(bool b)
     {
         weaponDurabilityBar.gameObject.SetActive(b);
@@ -32,6 +34,21 @@ public class UIManager : MonoBehaviour
     public void SetWDurabilitySliderValue(int i)
     {
         weaponDurabilityBar.GetComponent<Slider>().value = i;
+    }
+    //Buff duration
+    public void ShowBuffDurationBar(bool b)
+    {
+        buffDurationBar.gameObject.SetActive(b);
+    }
+
+    public void SetBuffDurationSliderMax(float i)
+    {
+        buffDurationBar.GetComponent<Slider>().maxValue = i;
+    }
+
+    public void SetBuffDurationSliderValue(float i)
+    {
+        buffDurationBar.GetComponent<Slider>().value = i;
     }
 
     public void UpdateCursor(int i)
