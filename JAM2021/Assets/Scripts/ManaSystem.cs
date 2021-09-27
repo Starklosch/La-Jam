@@ -88,6 +88,7 @@ public class ManaSystem : MonoBehaviour
 
     public void Harm(float damage)
     {
+        Debug.Log("Damage");
         if (Health > 0)
             Health -= damage;
     }

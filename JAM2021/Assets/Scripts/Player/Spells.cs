@@ -19,12 +19,14 @@ public class Spells : MonoBehaviour
     Transform hand;
     bool hasSpell;
     SpellType currentType;
+    PlayerController playerController;
 
     void Start()
     {
         currentType = SpellType.None;
         hasSpell = false;
         hand = transform.Find("Main Camera").Find("PlayerHand");
+        playerController = GetComponent<PlayerController>();
     }
 
     public bool HasSpellInHand()
@@ -35,7 +37,15 @@ public class Spells : MonoBehaviour
     public void ShootSpell()
     {
         var proj = Instantiate(prefabs[(int)currentType], hand.position, Quaternion.identity).GetComponent<Projectile>();
-        proj.direction = Camera.main.transform.forward;
+
+        if (playerController.GetHitPoint() != Vector3.zero)
+        {
+            proj.direction = (playerController.GetHitPoint() - hand.position).normalized;
+        }
+        else
+        {
+            proj.direction = Camera.main.transform.forward;
+        } 
 
         switch (currentType)
         {
@@ -43,7 +53,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Poison();
+                    if (e) e.Poison(4/*DURATION TO GET WITH SCRIPTABLE OBJECTS*/);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -52,7 +62,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Stun();
+                    if (e) e.Stun(3);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };

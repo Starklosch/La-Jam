@@ -18,7 +18,11 @@ public class Weapons : MonoBehaviour
     GameObject hit;
     bool hasWeapon;
     Transform hand;
-    float cooldown = 0.1f;
+    //Espera entre golpeo y golpeo
+    [Tooltip("Espera entre golpeo y golpeo")]
+    public float hitRatio = 0.4f;
+    //Tiempo que aparece el cubo hit
+    float cooldownHit= 0.1f;
     float lastTime = 0f;
 
     //Weapon stats
@@ -34,7 +38,7 @@ public class Weapons : MonoBehaviour
 
     void Update()
     {
-        if (hit.activeInHierarchy && cooldown < Time.time - lastTime) hit.SetActive(false);
+        if (hit.activeInHierarchy && cooldownHit < Time.time - lastTime) hit.SetActive(false);
     }
     
     public void ActivateWeapon(GameManager.Cards c)
@@ -86,7 +90,7 @@ public class Weapons : MonoBehaviour
 
     public void UseWeapon()
     {
-        if (cooldown > Time.time - lastTime) return;
+        if (hitRatio > Time.time - lastTime) return;
 
         hit.SetActive(true);
 

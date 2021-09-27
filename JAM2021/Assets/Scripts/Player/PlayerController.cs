@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Fuerza de salto")]
     public float jumpForce = 9f;
 
+    [Tooltip("Multiplicador de salto")]
+    public float jumpForceModifier = 2f;
+
     [Header("Capsula")]
     [Tooltip("Altura de la camara en proporcion (0-1) a la altura del jugador")]
     public float cameraHeightRatio = 0.9f;
@@ -67,6 +70,20 @@ public class PlayerController : MonoBehaviour
     const float jumpGroundingPreventionTime = 0.2f;
     const float groundCheckDistanceInAir = 0.07f;
 
+    Buffs playerBuffs;
+    ManaSystem manaSystem;
+
+    public ManaSystem Mana
+    {
+        get
+        {
+            if (manaSystem == null)
+                manaSystem = GetComponent<ManaSystem>();
+
+            return manaSystem;
+        }
+    }
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -76,6 +93,8 @@ public class PlayerController : MonoBehaviour
         controller.enableOverlapRecovery = true;
 
         GameManager.Instance.SetPlayer(gameObject);
+
+        playerBuffs = GetComponent<Buffs>();
     }
 
     void Update()
@@ -103,7 +122,7 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
-            if(c!=GameManager.Cards.None && GetComponent<ManaSystem>().UseMana(10/*SACAR EL MANA CORRESPONDIENTE A c DE LOS SCRIPTABLE OBJECTS*/))
+            if(c!=GameManager.Cards.None && Mana.UseMana(10/*SACAR EL MANA CORRESPONDIENTE A c DE LOS SCRIPTABLE OBJECTS*/))
             GameManager.Instance.UseCard();
         }
         //Click izquierdo
@@ -127,6 +146,16 @@ public class PlayerController : MonoBehaviour
         //Botones numericos
         int numberPressed = inputHandler.GetNumberPressed();
         if (numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
+    }
+
+    public Vector3 GetHitPoint()
+    {
+        RaycastHit hitPoint;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitPoint, 10000f))
+        {
+            return hitPoint.point;
+        }
+        else return Vector3.zero;
     }
 
     void AimCheck()
@@ -218,9 +247,8 @@ public class PlayerController : MonoBehaviour
         
 
         //Movimiento del player
-        bool isSprinting = false;
         
-        float speedModifier = isSprinting ? sprintSpeedModifier : 1f;
+        float speedModifier = playerBuffs.HasSprintBuff() ? sprintSpeedModifier : 1f;
 
         //Convierte el input de movimiento a worldspace basado en la orientacion del player transform
         Vector3 worldspaceMoveInput = transform.TransformVector(inputHandler.GetMoveInput());
@@ -242,8 +270,10 @@ public class PlayerController : MonoBehaviour
                 //Reseteo de velocidad en eje Y
                 CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
 
+                float jumpModifier = playerBuffs.HasJumpBuff() ? jumpForceModifier : 1f;
+
                 //Se añade la fuerza vertical de salto
-                CharacterVelocity += Vector3.up * jumpForce;
+                CharacterVelocity += Vector3.up * jumpForce * jumpModifier;
 
                 // play sound
                 //AudioSource.PlayOneShot(JumpSfx);

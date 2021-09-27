@@ -135,6 +135,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public GameObject PlayerInstance { get => playerInstance; }
+
     public void AcceptChest()
     {
         if(chestCardHolding != Cards.None)

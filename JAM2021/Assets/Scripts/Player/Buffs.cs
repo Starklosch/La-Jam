@@ -15,13 +15,15 @@ public class Buffs : MonoBehaviour
     }
 
     BuffType currentType;
-    bool hasBuff;
+    bool hasBuff, hasSprintBuff, hasJumpBuff;
     float currentTime;
+    PlayerController playerController;
 
     void Start()
     {
         currentType = BuffType.None;
         hasBuff = false;
+        playerController = GetComponent<PlayerController>();
     }
 
     void Update()
@@ -45,17 +47,17 @@ public class Buffs : MonoBehaviour
         {
             case GameManager.Cards.Speed:
                 currentType = BuffType.Speed;
-                
+                hasSprintBuff = true;
                 ActivateDurationBar(5);
                 break;
             case GameManager.Cards.Jump:
                 currentType = BuffType.Jump;
-                
+                hasJumpBuff = true;
                 ActivateDurationBar(5);
                 break;
             case GameManager.Cards.Heal:
                 currentType = BuffType.Heal;
-                GetComponent<ManaSystem>().Heal(5);
+                GetComponent<ManaSystem>().Heal(20);
                 break;
         }
     }
@@ -64,6 +66,8 @@ public class Buffs : MonoBehaviour
         GameManager.Instance.GetCanvas().ShowBuffDurationBar(false);
         currentType = BuffType.None;
         hasBuff = false;
+        hasSprintBuff = false;
+        hasJumpBuff = false;
     }
 
     void ActivateDurationBar(float maxSecs)
@@ -73,5 +77,13 @@ public class Buffs : MonoBehaviour
         GameManager.Instance.GetCanvas().ShowBuffDurationBar(true);
         GameManager.Instance.GetCanvas().SetBuffDurationSliderMax(currentTime);
         GameManager.Instance.GetCanvas().SetBuffDurationSliderValue(currentTime);
+    }
+    public bool HasSprintBuff()
+    {
+        return hasSprintBuff;
+    }
+    public bool HasJumpBuff()
+    {
+        return hasJumpBuff;
     }
 }
