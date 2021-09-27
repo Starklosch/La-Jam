@@ -45,6 +45,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Fuerza de salto")]
     public float jumpForce = 9f;
 
+    [Tooltip("Multiplicador de salto")]
+    public float jumpForceModifier = 2f;
+
     [Header("Capsula")]
     [Tooltip("Altura de la camara en proporcion (0-1) a la altura del jugador")]
     public float cameraHeightRatio = 0.9f;
@@ -67,6 +70,8 @@ public class PlayerController : MonoBehaviour
     const float jumpGroundingPreventionTime = 0.2f;
     const float groundCheckDistanceInAir = 0.07f;
 
+    Buffs playerBuffs;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -76,6 +81,8 @@ public class PlayerController : MonoBehaviour
         controller.enableOverlapRecovery = true;
 
         GameManager.Instance.SetPlayer(gameObject);
+
+        playerBuffs = GetComponent<Buffs>();
     }
 
     void Update()
@@ -218,9 +225,8 @@ public class PlayerController : MonoBehaviour
         
 
         //Movimiento del player
-        bool isSprinting = false;
         
-        float speedModifier = isSprinting ? sprintSpeedModifier : 1f;
+        float speedModifier = playerBuffs.HasSprintBuff() ? sprintSpeedModifier : 1f;
 
         //Convierte el input de movimiento a worldspace basado en la orientacion del player transform
         Vector3 worldspaceMoveInput = transform.TransformVector(inputHandler.GetMoveInput());
@@ -242,8 +248,10 @@ public class PlayerController : MonoBehaviour
                 //Reseteo de velocidad en eje Y
                 CharacterVelocity = new Vector3(CharacterVelocity.x, 0f, CharacterVelocity.z);
 
+                float jumpModifier = playerBuffs.HasJumpBuff() ? jumpForceModifier : 1f;
+
                 //Se añade la fuerza vertical de salto
-                CharacterVelocity += Vector3.up * jumpForce;
+                CharacterVelocity += Vector3.up * jumpForce * jumpModifier;
 
                 // play sound
                 //AudioSource.PlayOneShot(JumpSfx);
