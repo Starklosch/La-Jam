@@ -4,17 +4,23 @@ ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 7498617199164346627
-    second: metarig|cardHold
-  - first:
       74: -5324238279805231817
     second: metarig|Idle
+  - first:
+      74: -7025404929255275065
+    second: metarig|LeftIdle
+  - first:
+      74: 7531463423802118328
+    second: metarig|LeftPlay
   - first:
       74: -5334780419195812765
     second: metarig|PlayCard
   - first:
       74: -5003131165045108139
     second: metarig|PoseLib
+  - first:
+      74: -339188391806372156
+    second: metarig|WeaponAttack
   - first:
       74: 6802415133137344893
     second: metarig|WeaponEquip
