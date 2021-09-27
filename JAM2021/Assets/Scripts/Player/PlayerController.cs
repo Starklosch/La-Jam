@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
     public Vector3 CharacterVelocity { get; set; }
     public bool IsGrounded { get; private set; }
     public bool HasJumpedThisFrame { get; private set; }
-    public bool IsDead { get; private set; }
-    public bool IsCrouching { get; private set; }
 
     PlayerInput inputHandler;
     CharacterController controller;
@@ -74,6 +72,8 @@ public class PlayerController : MonoBehaviour
     ManaSystem manaSystem;
 
     Animator anim;
+
+    Hands handsAnimation;
 
     public ManaSystem Mana
     {
@@ -99,6 +99,13 @@ public class PlayerController : MonoBehaviour
         playerBuffs = GetComponent<Buffs>();
 
         anim = GetComponent<Animator>();
+
+        handsAnimation = GetComponentInChildren<Hands>();
+
+        if (GameManager.Instance.GetCardSelected() != GameManager.Cards.None)
+        {
+            handsAnimation.HoldCard = true;
+        }
     }
 
     void Update()
@@ -127,7 +134,10 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
             if(c!=GameManager.Cards.None && Mana.UseMana(GameManager.Instance.CardsData[c].manaCost))
-            GameManager.Instance.UseCard();
+            {
+                GameManager.Instance.UseCard();
+                handsAnimation.PlayCard();
+            }
         }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())

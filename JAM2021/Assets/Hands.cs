@@ -13,7 +13,7 @@ public class Hands : MonoBehaviour
 
     bool m_holdCard, m_equiped;
 
-    bool HoldCard
+    public bool HoldCard
     {
         get => m_holdCard;
         set
@@ -24,7 +24,7 @@ public class Hands : MonoBehaviour
         }
     }
 
-    bool Equiped
+    public bool Equiped
     {
         get => m_equiped;
         set
