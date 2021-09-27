@@ -16,6 +16,6 @@ MonoBehaviour:
   type: 1
   cardName: Hammer
   description: A heavy weapon to bash your foes
-  manaCost: 0
-  damage: 0
+  manaCost: 25
+  damage: 20
   duration: 0

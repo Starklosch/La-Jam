@@ -16,6 +16,6 @@ MonoBehaviour:
   type: 0
   cardName: Heal
   description: Restores some health to you
-  manaCost: 0
-  damage: 0
+  manaCost: 10
+  damage: 25
   duration: 0

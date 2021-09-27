@@ -16,6 +16,6 @@ MonoBehaviour:
   type: 1
   cardName: Sword
   description: A sword to slay enemies
-  manaCost: 0
-  damage: 0
+  manaCost: 10
+  damage: 10
   duration: 0

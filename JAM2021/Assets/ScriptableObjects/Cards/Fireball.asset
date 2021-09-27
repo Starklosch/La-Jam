@@ -16,5 +16,6 @@ MonoBehaviour:
   type: 2
   cardName: Fire Ball
   description: Burn the enemies
-  manaCost: 0
-  damage: 0
+  manaCost: 5
+  damage: 10
+  duration: 0
