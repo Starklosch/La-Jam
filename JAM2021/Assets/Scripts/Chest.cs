@@ -5,6 +5,8 @@ using UnityEngine;
 public class Chest : MonoBehaviour
 {
 
+    Animator anim;
+
     public enum ChestType
     {
         Reward,
@@ -13,11 +15,16 @@ public class Chest : MonoBehaviour
         None
     }
 
+    int animOpen = 0;
+
     bool isOpen_;
 
     void Start()
     {
         isOpen_ = false;
+
+        anim = GetComponent<Animator>();
+        animOpen = Animator.StringToHash("Open");
     }
     
     public void Open()
@@ -33,6 +40,8 @@ public class Chest : MonoBehaviour
             isOpen_ = true;
             GameManager.Instance.HideEKey();
             GameManager.Instance.OpenChest();
+
+            anim.SetBool(animOpen, true);
         }
     }
 
