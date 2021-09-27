@@ -87,18 +87,6 @@ public class GameManager : MonoBehaviour
     {
         get
         {
-            // Load data
-            if (cardsData == null)
-            {
-                cardsData = new Dictionary<Cards, ScriptableCard>();
-                var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
-
-                foreach (var item in cards)
-                {
-                    cardsData[item.id] = item;
-                }
-            }
-
             return cardsData;
         }
     }
@@ -131,6 +119,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("loading");
+        cardsData = new Dictionary<Cards, ScriptableCard>();
+        var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
+
+        foreach (var item in cards)
+        {
+            Debug.Log(item.id);
+            cardsData[item.id] = item;
+        }
+
         hand[0] = Cards.Sword;
         hand[1] = Cards.Poison;
         hand[2] = Cards.Speed;

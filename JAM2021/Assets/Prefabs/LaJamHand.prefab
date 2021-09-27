@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 4813809150685060828}
   - component: {fileID: 3566728449697848643}
   m_Layer: 0
-  m_Name: LaJamHand 1
+  m_Name: LaJamHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -515,7 +515,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4335865973403683982}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: dcea8ee6e1248bd4dbd8bcaaf677cd41, type: 3}
   m_Controller: {fileID: 9100000, guid: 48ab2e80e9c82a046986eab31b489202, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
