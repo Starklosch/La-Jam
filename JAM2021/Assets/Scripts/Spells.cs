@@ -61,6 +61,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
+                    if (e) e.TakeDamage(3);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
