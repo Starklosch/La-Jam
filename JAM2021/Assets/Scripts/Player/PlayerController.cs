@@ -136,6 +136,16 @@ public class PlayerController : MonoBehaviour
         if (numberPressed != -1) GameManager.Instance.SetCursor(numberPressed - 1);
     }
 
+    public Vector3 GetHitPoint()
+    {
+        RaycastHit hitPoint;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitPoint, 10000f))
+        {
+            return hitPoint.point;
+        }
+        else return Vector3.zero;
+    }
+
     void AimCheck()
     {
         RaycastHit hit;
