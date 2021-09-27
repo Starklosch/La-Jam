@@ -19,11 +19,13 @@ public class Spells : MonoBehaviour
     Transform hand;
     bool hasSpell;
     SpellType currentType;
+    GameManager.Cards currentSpellCard;
     PlayerController playerController;
 
     void Start()
     {
         currentType = SpellType.None;
+        currentSpellCard = GameManager.Cards.None;
         hasSpell = false;
         hand = transform.Find("Main Camera").Find("PlayerHand");
         playerController = GetComponent<PlayerController>();
@@ -53,7 +55,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Poison(4/*DURATION TO GET WITH SCRIPTABLE OBJECTS*/);
+                    if (e) e.Poison(GameManager.Instance.CardsData[currentSpellCard].duration);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -62,7 +64,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Stun(3);
+                    if (e) e.Stun(GameManager.Instance.CardsData[currentSpellCard].duration);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -71,7 +73,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.TakeDamage(3);
+                    if (e) e.TakeDamage((int)GameManager.Instance.CardsData[currentSpellCard].damage);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -84,6 +86,8 @@ public class Spells : MonoBehaviour
     public void ActivateSpell(GameManager.Cards c)
     {
         DisableSpell();
+
+        currentSpellCard = c;
 
         switch (c)
         {
@@ -103,6 +107,7 @@ public class Spells : MonoBehaviour
     public void DisableSpell()
     {
         currentType = SpellType.None;
+        currentSpellCard = GameManager.Cards.None;
         hasSpell = false;
     }
 }

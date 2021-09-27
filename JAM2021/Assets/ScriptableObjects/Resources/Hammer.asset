@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c969bdd193a3a6343b7829dfcccd61ed, type: 3}
-  m_Name: Sword
+  m_Name: Hammer
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   type: 1
-  cardName: Sword
-  description: A sword to slay enemies
-  manaCost: 10
-  damage: 10
-  duration: 0
+  cardName: Hammer
+  description: A heavy weapon to bash your foes
+  manaCost: 25
+  damage: 20
+  duration: 10

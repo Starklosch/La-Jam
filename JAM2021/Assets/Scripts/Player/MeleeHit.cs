@@ -11,7 +11,7 @@ public class MeleeHit : MonoBehaviour
         Enemy e = other.GetComponent<Enemy>();
         if (e)
         {
-            e.TakeDamage(1);
+            e.TakeDamage((int)weaponsComponent.GetCurrentDamage());
             weaponsComponent.UseDurability();
         }
     }

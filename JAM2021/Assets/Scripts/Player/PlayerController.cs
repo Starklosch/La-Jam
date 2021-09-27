@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
-            if(c!=GameManager.Cards.None && Mana.UseMana(10/*SACAR EL MANA CORRESPONDIENTE A c DE LOS SCRIPTABLE OBJECTS*/))
+            if(c!=GameManager.Cards.None && Mana.UseMana(GameManager.Instance.CardsData[c].manaCost))
             GameManager.Instance.UseCard();
         }
         //Click izquierdo

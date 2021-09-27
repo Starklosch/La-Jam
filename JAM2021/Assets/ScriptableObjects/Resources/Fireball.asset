@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c969bdd193a3a6343b7829dfcccd61ed, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  id: 6
+  id: 5
   type: 2
   cardName: Fire Ball
   description: Burn the enemies

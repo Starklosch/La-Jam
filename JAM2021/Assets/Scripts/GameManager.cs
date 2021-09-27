@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour
     Cards[] hand = new Cards[3];
     int cursorIndex = 0;
 
-    Dictionary<Cards, ScriptableCard> cardsData;
+    Dictionary<Cards, ScriptableCard> cardsData = null;
 
     public IReadOnlyDictionary<Cards, ScriptableCard> CardsData
     {
@@ -77,7 +78,9 @@ public class GameManager : MonoBehaviour
                 var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
 
                 foreach (var item in cards)
+                {
                     cardsData[item.id] = item;
+                }
             }
 
             return cardsData;

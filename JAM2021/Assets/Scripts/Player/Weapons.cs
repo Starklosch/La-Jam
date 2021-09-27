@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
-    public enum WeaponType
-    {
-        //**Same order as Cards Enum***
-        Sword,
-        Axe,
-        Hammer,
-
-        None
-    }
-
     GameObject currentWeapon = null;
     GameObject hit;
     bool hasWeapon;
@@ -26,8 +16,8 @@ public class Weapons : MonoBehaviour
     float lastTime = 0f;
 
     //Weapon stats
-    int currentDamage;
-    int currentDurability;
+    float currentDamage;
+    float currentDurability;
     void Start()
     {
         currentDamage = 0;
@@ -50,28 +40,11 @@ public class Weapons : MonoBehaviour
         currentWeapon.SetActive(true);
         hasWeapon = true;
         GameManager.Instance.GetCanvas().ShowDurabilityBar(true);
-        switch ((WeaponType)c)
-        {
-            case WeaponType.Sword:
-                currentDamage = 1;
-                currentDurability = 5;
-                GameManager.Instance.GetCanvas().SetWDurabilitySliderMax(currentDurability);
-                GameManager.Instance.GetCanvas().SetWDurabilitySliderValue(currentDurability);
-                break;
-            case WeaponType.Axe:
-                currentDamage = 2;
-                currentDurability = 5;
-                GameManager.Instance.GetCanvas().SetWDurabilitySliderMax(currentDurability);
-                GameManager.Instance.GetCanvas().SetWDurabilitySliderValue(currentDurability);
-                break;
-            case WeaponType.Hammer:
-                currentDamage = 3;
-                currentDurability = 5;
-                GameManager.Instance.GetCanvas().SetWDurabilitySliderMax(currentDurability);
-                GameManager.Instance.GetCanvas().SetWDurabilitySliderValue(currentDurability);
-                break;
-        }
-            
+
+        currentDamage = GameManager.Instance.CardsData[c].damage;
+        currentDurability = GameManager.Instance.CardsData[c].duration;
+        GameManager.Instance.GetCanvas().SetWDurabilitySliderMax((int)currentDurability);
+        GameManager.Instance.GetCanvas().SetWDurabilitySliderValue((int)currentDurability);
     }
 
     public void DisableWeapon()
@@ -100,7 +73,12 @@ public class Weapons : MonoBehaviour
     public void UseDurability()
     {
         currentDurability--;
-        GameManager.Instance.GetCanvas().SetWDurabilitySliderValue(currentDurability);
+        GameManager.Instance.GetCanvas().SetWDurabilitySliderValue((int)currentDurability);
         if (currentDurability <= 0) DisableWeapon();
+    }
+
+    public float GetCurrentDamage()
+    {
+        return currentDamage;
     }
 }

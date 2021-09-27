@@ -48,16 +48,16 @@ public class Buffs : MonoBehaviour
             case GameManager.Cards.Speed:
                 currentType = BuffType.Speed;
                 hasSprintBuff = true;
-                ActivateDurationBar(5);
+                ActivateDurationBar(GameManager.Instance.CardsData[c].duration);
                 break;
             case GameManager.Cards.Jump:
                 currentType = BuffType.Jump;
                 hasJumpBuff = true;
-                ActivateDurationBar(5);
+                ActivateDurationBar(GameManager.Instance.CardsData[c].duration);
                 break;
             case GameManager.Cards.Heal:
                 currentType = BuffType.Heal;
-                GetComponent<ManaSystem>().Heal(20);
+                GetComponent<ManaSystem>().Heal(GameManager.Instance.CardsData[c].damage);
                 break;
         }
     }
