@@ -43,7 +43,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Poison();
+                    if (e) e.Poison(4/*DURATION TO GET WITH SCRIPTABLE OBJECTS*/);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -52,7 +52,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Stun();
+                    if (e) e.Stun(3);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
