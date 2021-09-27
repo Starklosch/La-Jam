@@ -2,7 +2,16 @@ fileFormatVersion: 2
 guid: dcea8ee6e1248bd4dbd8bcaaf677cd41
 ModelImporter:
   serializedVersion: 20200
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -5324238279805231817
+    second: metarig|Idle
+  - first:
+      74: -5334780419195812765
+    second: metarig|PlayCard
+  - first:
+      74: -5003131165045108139
+    second: metarig|PoseLib
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -34,15 +43,15 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.9
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 0
-    importLights: 0
+    importCameras: 1
+    importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -85,7 +94,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.009
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
