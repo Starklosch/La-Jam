@@ -65,6 +65,22 @@ public class GameManager : MonoBehaviour
     Cards[] hand = new Cards[3];
     int cursorIndex = 0;
 
+    //public int CursorIndex
+    //{
+    //    get => cursorIndex;
+    //    set
+    //    {
+    //        if (cursorIndex != value)
+    //            CursorIndexChanged?.Invoke(value);
+
+    //        cursorIndex = value;
+    //    }
+    //}
+
+    public delegate void IntHandler(int number);
+
+    public event IntHandler CursorIndexChanged;
+
     Dictionary<Cards, ScriptableCard> cardsData = null;
 
     public IReadOnlyDictionary<Cards, ScriptableCard> CardsData
@@ -323,6 +339,8 @@ public class GameManager : MonoBehaviour
         cursorIndex -= m;
         if (cursorIndex < 0) cursorIndex = 2;
         else if (cursorIndex > 2) cursorIndex = 0;
+
+        CursorIndexChanged?.Invoke(cursorIndex);
 
         UIManagerInstance.UpdateCursor(cursorIndex);
     }
