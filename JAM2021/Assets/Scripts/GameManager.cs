@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
 
     public void UseCard()
     {
-        if (GetCardSelected() == Cards.None /*|| CD*/) return;
+        if (GetCardSelected() == Cards.None) return;
         switch (hand[cursorIndex])
         {
             case Cards.Sword:
