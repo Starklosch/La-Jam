@@ -650,7 +650,9 @@ GameObject:
   - component: {fileID: -3024551598526229011}
   - component: {fileID: 1238890921}
   - component: {fileID: 3702021040450370596}
-  m_Layer: 0
+  - component: {fileID: 3824219180281991884}
+  - component: {fileID: 6266136214322398798}
+  m_Layer: 12
   m_Name: LaJamEsbirro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,6 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afcce72b69a87cf428e88b4b7ed55bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 30
   anim: {fileID: 0}
   manager: {fileID: 0}
   attackTime: 0
@@ -737,6 +740,35 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
+--- !u!65 &3824219180281991884
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487973517340693512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6, y: 1.6, z: 1.3}
+  m_Center: {x: 0, y: 2, z: -0.26}
+--- !u!54 &6266136214322398798
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487973517340693512}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4563186012155286222
 GameObject:
   m_ObjectHideFlags: 0

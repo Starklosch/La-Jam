@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Golem : Enemy
 {
-    [Tooltip("Vida máxima del enemigo.")]
-    public int maxHealth = 10;
-
     int animAttackMelee;
     int animAttackRange;
 
@@ -23,21 +20,21 @@ public class Golem : Enemy
     //    base.Heal(h);
     //}
 
-    //public override bool TakeDamage(int d)
-    //{
-    //    //Sonido de daño golem
-    //    if (base.TakeDamage(d))
-    //    {
-    //        Die();
-    //    }
-    //    return false;
-    //}
+    public override bool TakeDamage(int d)
+    {
+        //Sonido de daño golem
+        if (base.TakeDamage(d))
+        {
+            Die();
+        }
+        return false;
+    }
 
-    //public override void Die()
-    //{
-    //    //Sonido de muerte golem
-    //    base.Die();
-    //}
+    public override void Die()
+    {
+        //Sonido de muerte golem
+        base.Die();
+    }
 
     public override void Attack()
     {
