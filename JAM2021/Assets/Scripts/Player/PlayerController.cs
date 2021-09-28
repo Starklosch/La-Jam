@@ -109,13 +109,17 @@ public class PlayerController : MonoBehaviour
 
     private void CursorIndexChanged(int number)
     {
-        Debug.LogWarning("===============================GetCardSelected PUEDE DEVOLVER NONE, QUE NO EXISTE EN EL DICCIONARIO, CUIDADO===============================");
-        var selectedCard = GameManager.Instance.CardsData[GameManager.Instance.GetCardSelected()];
+        GameManager.Cards c = GameManager.Instance.GetCardSelected();
+        if (c != GameManager.Cards.None)
+        {
+            card.gameObject.SetActive(true);
 
-        Debug.Log(selectedCard);
+            var selectedCard = GameManager.Instance.CardsData[c];
 
-        card.Text = selectedCard.description;
-        card.Image = selectedCard.image.texture;
+            card.Text = selectedCard.description;
+            card.Image = selectedCard.image.texture;
+        }
+        else card.gameObject.SetActive(false);
     }
 
     void Update()
