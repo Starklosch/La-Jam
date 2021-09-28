@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 367941899523839176}
   - component: {fileID: 4165908864122542873}
+  - component: {fileID: 311499711495908338}
   m_Layer: 0
   m_Name: Cape
   m_TagString: Untagged
@@ -56,13 +57,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474584848054268401}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.495, z: 0}
+  m_LocalRotation: {x: -0.9237627, y: -0.0010757827, z: 0.38295907, w: 0.0019590878}
+  m_LocalPosition: {x: 1.281, y: 0.459, z: 0.812}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children: []
   m_Father: {fileID: 4547398401121569637}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -179.84, y: 45.035004, z: -0.2000122}
 --- !u!137 &4165908864122542873
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -119,6 +120,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.021792866, z: 0.007847127}
     m_Extent: {x: 0.02418855, y: 0.037813842, z: 0.03509869}
   m_DirtyAABB: 0
+--- !u!136 &311499711495908338
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474584848054268401}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.016848799
+  m_Height: 0.07965791
+  m_Direction: 1
+  m_Center: {x: -0.015633455, y: -0.0065408107, z: 0.04599718}
 --- !u!1 &677873378281004097
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +237,7 @@ GameObject:
   - component: {fileID: 6511799317305454246}
   - component: {fileID: 4054633762677696387}
   - component: {fileID: 8157900598996770414}
+  - component: {fileID: 2860257155135830965}
   m_Layer: 0
   m_Name: Hat
   m_TagString: Untagged
@@ -292,6 +308,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &2860257155135830965
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976775363163967825}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6657998009922166292, guid: 9e3a1309671a41544b80795f1d8c1663, type: 3}
 --- !u!1 &3247606839148881832
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +554,7 @@ GameObject:
   - component: {fileID: 8921578184942329135}
   - component: {fileID: 8297441112984426571}
   - component: {fileID: 939055597613704249}
+  - component: {fileID: 2875695451732393369}
   m_Layer: 0
   m_Name: Wand 1
   m_TagString: Untagged
@@ -594,6 +625,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &2875695451732393369
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473363757451909610}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0021847507
+  m_Height: 0.039427213
+  m_Direction: 2
+  m_Center: {x: 9.3123404e-17, y: -6.410806e-10, z: 0.0052444455}
 --- !u!1 &5506204907232484773
 GameObject:
   m_ObjectHideFlags: 0

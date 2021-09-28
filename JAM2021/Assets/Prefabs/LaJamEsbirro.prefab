@@ -544,6 +544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 104156857483826647}
   - component: {fileID: 5069202137143241927}
+  - component: {fileID: 4055267357818656637}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -624,6 +625,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.0004815855, z: -0.00041918643}
     m_Extent: {x: 0.017191414, y: 0.013630373, z: 0.00849737}
   m_DirtyAABB: 0
+--- !u!135 &4055267357818656637
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108820524488776509}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.009316705
+  m_Center: {x: 0, y: 0.0040106415, z: 0.008132756}
 --- !u!1 &4487973517340693512
 GameObject:
   m_ObjectHideFlags: 0
@@ -698,6 +712,9 @@ MonoBehaviour:
   chaseDistance: 10
   attackDistance: 5
   hasMoveAnimation: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!195 &3702021040450370596
 NavMeshAgent:
   m_ObjectHideFlags: 0
