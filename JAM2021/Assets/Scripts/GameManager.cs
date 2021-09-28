@@ -138,6 +138,9 @@ public class GameManager : MonoBehaviour
         hand[0] = Cards.Sword;
         hand[1] = Cards.Poison;
         hand[2] = Cards.Speed;
+
+        UpdateAllCardImages();
+        CursorIndexChanged?.Invoke(cursorIndex);
     }
 
     Cards chestCardHolding = Cards.None;
@@ -359,6 +362,8 @@ public class GameManager : MonoBehaviour
             hand[cursorIndex] = RemoveFromDeck();
             UIManagerInstance.UpdateCardImage(cursorIndex, hand[cursorIndex]);
         }
+
+        CursorIndexChanged?.Invoke(cursorIndex);
     }
 
     public void UpdateAllCardImages() 

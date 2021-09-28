@@ -26,7 +26,6 @@ public class UIManager : MonoBehaviour
         shuffledText = transform.Find("PlayerUI").Find("CardsDeck").Find("ShuffledText").GetComponent<Animator>();
         pauseMenu = transform.Find("PauseMenu");
 
-        GameManager.Instance.UpdateAllCardImages();
     }
     //Durability of weapon
     public void ShowDurabilityBar(bool b)
