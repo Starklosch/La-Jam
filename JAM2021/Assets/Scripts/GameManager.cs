@@ -44,7 +44,14 @@ public class GameManager : MonoBehaviour
         return isPaused;
     }
 
-    public void SetPause(bool a)
+    public void TogglePauseMenu()
+    {
+        isPaused = !isPaused;
+        SetTimeRunning(isPaused);
+        UIManagerInstance.SetPauseMenuUI(isPaused);
+    }
+
+    public void SetTimeRunning(bool a)
     {
         Time.timeScale = (a) ? 0 : 1;
         Cursor.lockState = a ? CursorLockMode.None : CursorLockMode.Locked;
@@ -179,18 +186,18 @@ public class GameManager : MonoBehaviour
             AddToDeck(chestCardHolding);
             chestCardHolding = Cards.None;
         }
-        SetPause(false);
+        SetTimeRunning(false);
     }
 
     public void DiscardChest()
     {
         chestCardHolding = Cards.None;
-        SetPause(false);
+        SetTimeRunning(false);
     }
 
     public void OpenChest()
     {
-        SetPause(true);
+        SetTimeRunning(true);
         //Bad luck prevention
         if (deck.Count < 1)
         {

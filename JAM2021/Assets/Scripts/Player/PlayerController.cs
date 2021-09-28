@@ -107,6 +107,7 @@ public class PlayerController : MonoBehaviour
 
     private void CursorIndexChanged(int number)
     {
+        Debug.LogWarning("===============================GetCardSelected PUEDE DEVOLVER NONE, QUE NO EXISTE EN EL DICCIONARIO, CUIDADO===============================");
         var selectedCard = GameManager.Instance.CardsData[GameManager.Instance.GetCardSelected()];
 
         Debug.Log(selectedCard);
@@ -137,6 +138,10 @@ public class PlayerController : MonoBehaviour
 
     void HandleCharacterInput()
     {
+        if (inputHandler.GetKeyDownInput(KeyCode.Escape))
+        {
+            GameManager.Instance.TogglePauseMenu();
+        }
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();

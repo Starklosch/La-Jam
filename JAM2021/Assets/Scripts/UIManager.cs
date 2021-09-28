@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     Transform buffDurationBar;
     Transform eKey;
     Transform chestPanels;
+    Transform pauseMenu;
     Text deckCountText;
     Animator shuffledText;
     void Start()
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
         buffDurationBar = transform.Find("BuffDurationBar");
         deckCountText = transform.Find("PlayerUI").Find("CardsDeck").Find("Num").GetComponent<Text>();
         shuffledText = transform.Find("PlayerUI").Find("CardsDeck").Find("ShuffledText").GetComponent<Animator>();
+        pauseMenu = transform.Find("PauseMenu");
 
         GameManager.Instance.UpdateAllCardImages();
     }
@@ -76,6 +78,21 @@ public class UIManager : MonoBehaviour
     public void PlayShuffledTextAnimationUI()
     {
         shuffledText.Play("FadeInOutText", -1, 0.0f);
+    }
+
+    public void SetPauseMenuUI(bool b)
+    {
+        pauseMenu.gameObject.SetActive(b);
+    }
+
+    public void ResumeGameUI()
+    {
+        GameManager.Instance.TogglePauseMenu();
+    }
+
+    public void ExitGameUI()
+    {
+        Application.Quit();
     }
 
     public void ShowE()
