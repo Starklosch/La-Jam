@@ -55,7 +55,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Poison(GameManager.Instance.CardsData[currentSpellCard].duration);
+                    if (e) e.Poison(GameManager.Instance.CardsData[GameManager.Cards.Poison].duration);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -64,7 +64,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.Stun(GameManager.Instance.CardsData[currentSpellCard].duration);
+                    if (e) e.Stun(GameManager.Instance.CardsData[GameManager.Cards.Stun].duration);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };
@@ -73,7 +73,7 @@ public class Spells : MonoBehaviour
                 proj.Collision += (sender, args) =>
                 {
                     Enemy e = args.Collision.gameObject.GetComponent<Enemy>();
-                    if (e) e.TakeDamage((int)GameManager.Instance.CardsData[currentSpellCard].damage);
+                    if (e) e.TakeDamage((int)GameManager.Instance.CardsData[GameManager.Cards.FireBall].damage);
                     Projectile projComponent = (Projectile)sender;
                     Destroy(projComponent.gameObject);
                 };

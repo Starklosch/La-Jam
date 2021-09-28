@@ -78,9 +78,9 @@ public class UIManager : MonoBehaviour
         return eKey.GetComponent<Text>().IsActive();
     }
 
-    public void ShowChestPanel(int i, GameManager.Cards newCard, GameManager.Cards deckCard = GameManager.Cards.None)
+    public void ShowChestPanel(Chest.ChestType type, GameManager.Cards newCard, GameManager.Cards deckCard = GameManager.Cards.None)
     {
-        switch ((Chest.ChestType)i)
+        switch (type)
         {
             case Chest.ChestType.Reward:
                 chestPanels.Find("NewCardPanel").gameObject.SetActive(true);

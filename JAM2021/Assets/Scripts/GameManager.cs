@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
 
         foreach (var item in cards)
         {
-            //Debug.Log(item);
             cardsData[item.id] = item;
         }
     }
@@ -200,19 +199,19 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            int randomChest = Random.Range(0, (int)Chest.ChestType.None);
-            switch ((Chest.ChestType)randomChest)
+            Chest.ChestType rndChest = (Chest.ChestType)Random.Range(0, (int)Chest.ChestType.None);
+            switch (rndChest)
             {
                 case Chest.ChestType.Reward:
                     chestCardHolding = (Cards)Random.Range(0, (int)Cards.None);
-                    UIManagerInstance.ShowChestPanel(0, chestCardHolding);
+                    UIManagerInstance.ShowChestPanel(rndChest, chestCardHolding);
                     break;
                 case Chest.ChestType.Trap:
-                    UIManagerInstance.ShowChestPanel(0, Cards.None, deck.Dequeue());
+                    UIManagerInstance.ShowChestPanel(rndChest, Cards.None, deck.Dequeue());
                     break;
                 case Chest.ChestType.ForcedTrade:
                     chestCardHolding = (Cards)Random.Range(0, (int)Cards.None);
-                    UIManagerInstance.ShowChestPanel(0, chestCardHolding, deck.Dequeue());
+                    UIManagerInstance.ShowChestPanel(rndChest, chestCardHolding, deck.Dequeue());
                     break;
             }
         }
@@ -348,7 +347,7 @@ public class GameManager : MonoBehaviour
             UIManagerInstance.UpdateCardImage(cursorIndex, hand[cursorIndex]);
         }
 
-        Debug.Log(deck.Count);
+        Debug.Log("Deck: " + deck.Count);
     }
 
     public void UpdateAllCardImages() 

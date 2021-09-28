@@ -840,8 +840,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 5049164954333130705, guid: ce65450d9a4a6174f8aada637708b233, type: 3}
-  - {fileID: 5049164954333130705, guid: ce65450d9a4a6174f8aada637708b233, type: 3}
-  - {fileID: 5049164954333130705, guid: ce65450d9a4a6174f8aada637708b233, type: 3}
+  - {fileID: 268265412126529141, guid: 8a32590fb1f868243b3c5c0143abcd8b, type: 3}
+  - {fileID: 2669515392328152611, guid: 281d2fc13907ef8498fe08900fc870ba, type: 3}
 --- !u!114 &4160687775676315139
 MonoBehaviour:
   m_ObjectHideFlags: 0

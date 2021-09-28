@@ -140,7 +140,6 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
-            Debug.Log(GameManager.Instance.CardsData[c]);
 
             if(c!=GameManager.Cards.None && Mana.UseMana(GameManager.Instance.CardsData[c].manaCost))
                 GameManager.Instance.UseCard();
