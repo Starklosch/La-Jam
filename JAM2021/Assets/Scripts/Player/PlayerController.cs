@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
 
             card.Text = selectedCard.description;
             card.Image = selectedCard.image.texture;
+            card.ImageOffset = selectedCard.imageOffset;
         }
         else card.gameObject.SetActive(false);
     }
