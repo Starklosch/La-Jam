@@ -666,6 +666,9 @@ MonoBehaviour:
   chaseDistance: 10
   attackDistance: 4
   hasMoveAnimation: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7556546222153118796
 GameObject:
   m_ObjectHideFlags: 0
