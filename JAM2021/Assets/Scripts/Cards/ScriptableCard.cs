@@ -8,6 +8,7 @@ public class ScriptableCard : ScriptableObject
     public GameManager.Cards id;
     public GameManager.CardType type;
 
+
     public string cardName;
     public string description;
     public float manaCost;
@@ -16,4 +17,5 @@ public class ScriptableCard : ScriptableObject
     [Tooltip("For spells")]
     public float duration;
     public Sprite image;
+    public Vector2 imageOffset;
 }

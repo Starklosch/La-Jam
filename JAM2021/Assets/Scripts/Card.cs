@@ -12,8 +12,11 @@ public class Card : MonoBehaviour
     public RenderText renderText;
 
     [SerializeField] Texture2D image;
+    [SerializeField] Vector2 imageOffset;
     [SerializeField] string text;
     [SerializeField] string textReferenceName;
+    [SerializeField] string imageReferenceName;
+    [SerializeField] string imageOffsetReferenceName;
 
     public string Text
     {
@@ -35,11 +38,25 @@ public class Card : MonoBehaviour
         {
             image = value;
 
-            ren.sharedMaterials[3].mainTexture = image;
+            //ren.sharedMaterials[3].mainTexture = image;
+            ren.sharedMaterials[3].SetTexture(imageReference, image);
+        }
+    }
+
+    public Vector2 ImageOffset
+    {
+        get => imageOffset;
+        set
+        {
+            imageOffset = value;
+
+            ren.sharedMaterials[3].SetVector(imageOffsetReference, imageOffset);
         }
     }
 
     int textReference = 0;
+    int imageOffsetReference = 0;
+    int imageReference = 0;
 
     Renderer ren;
     Texture2D savedTex;
@@ -50,6 +67,8 @@ public class Card : MonoBehaviour
         ren = GetComponent<Renderer>();
 
         textReference = Shader.PropertyToID(textReferenceName);
+        imageOffsetReference = Shader.PropertyToID(imageOffsetReferenceName);
+        imageReference = Shader.PropertyToID(imageReferenceName);
 
         if (renderText == null && (renderText = FindObjectOfType<RenderText>()) == null)
             Debug.LogWarning("Missing RenderText!");

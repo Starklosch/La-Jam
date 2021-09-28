@@ -100,5 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderText: {fileID: 0}
   image: {fileID: 0}
+  imageOffset: {x: 0, y: 0}
   text: Hola
   textReferenceName: Texture2D_f5c2c4e315964ede9eff3684b5419968
+  imageReferenceName: Texture2D_1102f1728ce446edb3515979ab0114fa
+  imageOffsetReferenceName: Vector2_626b05b8ac9b426da92b074a8b04155b
