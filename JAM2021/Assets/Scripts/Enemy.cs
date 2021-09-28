@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("CanMove: " + value);
             //m_canMove = value;
             nav.isStopped = value;
+            MoveAnim = !value;
         }
         get => nav.isStopped;
     }
@@ -102,6 +103,9 @@ public class Enemy : MonoBehaviour
 
         if (player == null)
             return;
+
+        Debug.Log(IsStopped);
+        Debug.Log(IsStopped);
 
         var pDistance = Vector3.Distance(player.transform.position, transform.position);
 
