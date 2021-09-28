@@ -23,6 +23,15 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this);
         }
+
+        cardsData = new Dictionary<Cards, ScriptableCard>();
+        var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
+
+        foreach (var item in cards)
+        {
+            //Debug.Log(item);
+            cardsData[item.id] = item;
+        }
     }
 
     public void SceneSwitch(string name)
@@ -119,15 +128,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("loading");
-        cardsData = new Dictionary<Cards, ScriptableCard>();
-        var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
-
-        foreach (var item in cards)
-        {
-            cardsData[item.id] = item;
-        }
-
         hand[0] = Cards.Sword;
         hand[1] = Cards.Poison;
         hand[2] = Cards.Speed;
@@ -365,15 +365,17 @@ public class GameManager : MonoBehaviour
         if (cursorIndex < 0) cursorIndex = 2;
         else if (cursorIndex > 2) cursorIndex = 0;
 
-        CursorIndexChanged?.Invoke(cursorIndex);
-
         UIManagerInstance.UpdateCursor(cursorIndex);
+
+        CursorIndexChanged?.Invoke(cursorIndex);
     }
 
     public void SetCursor(int i)
     {
         cursorIndex = i;
         UIManagerInstance.UpdateCursor(cursorIndex);
+
+        CursorIndexChanged?.Invoke(cursorIndex);
     }
 
     public void ShowEKey()

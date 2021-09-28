@@ -12,18 +12,21 @@ public class CardsSelectorDisplay : MonoBehaviour
 
     Image[] childImages;
 
-    void Start()
+    private void Awake()
     {
-        //cursorOb = transform.GetChild(3).gameObject;
-
-        cursorTransform = cursorOb.GetComponent<RectTransform>();
-
         childImages = new Image[transform.childCount];
 
         for (int i = 0; i < transform.childCount; i++)
         {
             childImages[i] = transform.GetChild(i).GetComponent<Image>();
         }
+    }
+
+    void Start()
+    {
+        //cursorOb = transform.GetChild(3).gameObject;
+
+        cursorTransform = cursorOb.GetComponent<RectTransform>();
     }
 
     public void UpdateCursorUI(int index)

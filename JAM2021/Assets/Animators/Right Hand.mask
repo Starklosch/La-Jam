@@ -16,7 +16,7 @@ AvatarMask:
   - m_Path: metarig
     m_Weight: 0
   - m_Path: metarig/forearm.L
-    m_Weight: 1
+    m_Weight: 0
   - m_Path: metarig/forearm.L/hand.L
     m_Weight: 1
   - m_Path: metarig/forearm.L/hand.L/f_index.01.L
@@ -60,7 +60,7 @@ AvatarMask:
   - m_Path: metarig/forearm.L/hand.L/thumb.01.L/thumb.02.L/thumb.03.L/thumb.03.L_end
     m_Weight: 1
   - m_Path: metarig/forearm.R
-    m_Weight: 0
+    m_Weight: 1
   - m_Path: metarig/forearm.R/hand.R
     m_Weight: 1
   - m_Path: metarig/forearm.R/hand.R/f_index.01.R

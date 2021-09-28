@@ -10,6 +10,7 @@ public class Hands : MonoBehaviour
     int animPlayCard = 0;
     int animEquiped = 0;
     int animAttack = 0;
+    int animCastSpell = 0;
 
     bool m_holdCard, m_equiped;
 
@@ -45,9 +46,9 @@ public class Hands : MonoBehaviour
         anim.SetTrigger(animAttack);
     }
 
-    void PlayCardStart()
+    public void CastSpell()
     {
-        HoldCard = false;
+        anim.SetTrigger(animCastSpell);
     }
 
     // Start is called before the first frame update
@@ -59,6 +60,7 @@ public class Hands : MonoBehaviour
         animPlayCard = Animator.StringToHash("PlayCard");
         animEquiped = Animator.StringToHash("Equiped");
         animAttack = Animator.StringToHash("Attack");
+        animCastSpell = Animator.StringToHash("CastSpell");
     }
 
 }

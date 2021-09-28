@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 CharacterVelocity { get; set; }
     public bool IsGrounded { get; private set; }
     public bool HasJumpedThisFrame { get; private set; }
+    public bool IsDead { get; private set; }
+    public bool IsCrouching { get; private set; }
 
     PlayerInput inputHandler;
     CharacterController controller;
@@ -72,8 +74,7 @@ public class PlayerController : MonoBehaviour
     ManaSystem manaSystem;
 
     Animator anim;
-
-    Hands handsAnimation;
+    Card card;
 
     public ManaSystem Mana
     {
@@ -96,16 +97,22 @@ public class PlayerController : MonoBehaviour
 
         GameManager.Instance.SetPlayer(this);
 
+        card = FindObjectOfType<Card>();
+        GameManager.Instance.CursorIndexChanged += CursorIndexChanged;
+
         playerBuffs = GetComponent<Buffs>();
 
         anim = GetComponent<Animator>();
+    }
 
-        handsAnimation = GetComponentInChildren<Hands>();
+    private void CursorIndexChanged(int number)
+    {
+        var selectedCard = GameManager.Instance.CardsData[GameManager.Instance.GetCardSelected()];
 
-        if (GameManager.Instance.GetCardSelected() != GameManager.Cards.None)
-        {
-            handsAnimation.HoldCard = true;
-        }
+        Debug.Log(selectedCard);
+
+        card.Text = selectedCard.description;
+        card.Image = selectedCard.image.texture;
     }
 
     void Update()
@@ -133,11 +140,10 @@ public class PlayerController : MonoBehaviour
         if (inputHandler.GetKeyDownInput(KeyCode.F))
         {
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
+            Debug.Log(GameManager.Instance.CardsData[c]);
+
             if(c!=GameManager.Cards.None && Mana.UseMana(GameManager.Instance.CardsData[c].manaCost))
-            {
                 GameManager.Instance.UseCard();
-                handsAnimation.PlayCard();
-            }
         }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())

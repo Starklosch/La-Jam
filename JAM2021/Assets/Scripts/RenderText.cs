@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 public class RenderText : MonoBehaviour
@@ -20,6 +21,7 @@ public class RenderText : MonoBehaviour
     [SerializeField] FontStyle fontStyle;
 
     [SerializeField] LayerMask cullingMask;
+    [SerializeField] int maxCharsPerLine;
 
     public FontStyle FontStyle
     {
@@ -38,6 +40,12 @@ public class RenderText : MonoBehaviour
             text = value;
             Invalidate();
         }
+    }
+
+    public int MaxCharsPerLine
+    {
+        get => maxCharsPerLine;
+        set => maxCharsPerLine = value;
     }
 
     public TextAnchor TextPositioning
@@ -98,9 +106,56 @@ public class RenderText : MonoBehaviour
 
     public void Invalidate()
     {
+        var words = text.Split(' ');
+        var sb = new StringBuilder();
+        int i = 0;
+        bool firstLine = true;
+        while (i < words.Length)
+        {
+            if (firstLine)
+                firstLine = false;
+            else
+                sb.Append("\n");
+
+            int wordsThisLine = 0;
+            int chars = 0;
+            bool first = true;
+            for (int j = i; j < words.Length; j++)
+            {
+                int length = words[j].Length;
+                if (chars + length > MaxCharsPerLine)
+                    break;
+
+                wordsThisLine++;
+
+                chars += length;
+
+                if (first)
+                    first = false;
+                else
+                    chars++;
+
+                sb.Append(words[j]).Append(" ");
+            }
+
+            i += wordsThisLine;
+        }
+
+        //for (int i = 0; i < words.Length; i++)
+        //{
+        //    if (i % 3 == 0)
+        //    {
+        //        if (first)
+        //            first = false;
+        //        else
+        //            sb.Append("\n");
+        //    }
+        //    sb.Append(words[i]).Append(" ");
+        //}
+
         // Set up
         cam.orthographicSize = size;
-        textMesh.text = text;
+        textMesh.text = sb.ToString();
         textMesh.anchor = TextPositioning;
         textMesh.alignment = textAlignment;
         textMesh.font = font;

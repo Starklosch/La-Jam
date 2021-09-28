@@ -21,6 +21,9 @@ public class Enemy : MonoBehaviour
     public float attackTime;
     public float damage;
 
+    public float chaseDistance;
+    public float attackDistance;
+
     protected float attackCooldown;
     protected bool canAttack = true;
 
@@ -58,6 +61,15 @@ public class Enemy : MonoBehaviour
 
         if (player == null && manager.PlayerInstance != null)
             player = manager.PlayerInstance;
+    }
+
+    public virtual void Chase()
+    {
+        canAttack = false;
+
+        if (canAnim)
+            anim.SetTrigger(animAttackTrigger);
+
     }
 
     public virtual void Attack()
