@@ -61,6 +61,22 @@ public class Demonio : Enemy
 
     }
 
+    public override bool TakeDamage(int d)
+    {
+        //Sonido de daño demonio
+        if (base.TakeDamage(d))
+        {
+            Die();
+        }
+        return false;
+    }
+
+    public override void Die()
+    {
+        //Sonido de muerte demonio
+        base.Die();
+    }
+
     public enum AttackType
     {
         SimpleL,

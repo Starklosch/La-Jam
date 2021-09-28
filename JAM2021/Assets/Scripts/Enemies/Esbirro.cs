@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Esbirro : Enemy
 {
-    
 
     public override void Attack()
     {
@@ -30,6 +29,22 @@ public class Esbirro : Enemy
     {
         base.Update();
 
+    }
+
+    public override bool TakeDamage(int d)
+    {
+        //Sonido de daño esbirro
+        if (base.TakeDamage(d))
+        {
+            Die();
+        }
+        return false;
+    }
+
+    public override void Die()
+    {
+        //Sonido de muerte esbirro
+        base.Die();
     }
 
 }

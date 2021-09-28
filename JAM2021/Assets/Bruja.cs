@@ -64,6 +64,21 @@ public class Bruja : Enemy
     {
         base.Update();
     }
+    public override bool TakeDamage(int d)
+    {
+        //Sonido de daño bruja
+        if (base.TakeDamage(d))
+        {
+            Die();
+        }
+        return false;
+    }
+
+    public override void Die()
+    {
+        //Sonido de muerte bruja
+        base.Die();
+    }
 
     public enum AttackType
     {

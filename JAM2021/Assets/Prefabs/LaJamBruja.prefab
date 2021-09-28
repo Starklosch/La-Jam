@@ -423,7 +423,9 @@ GameObject:
   - component: {fileID: 3362074568635933108}
   - component: {fileID: 1589804629574835699}
   - component: {fileID: 6252794871252388362}
-  m_Layer: 0
+  - component: {fileID: 5321865429251934704}
+  - component: {fileID: 3612838826688772823}
+  m_Layer: 12
   m_Name: LaJamBruja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6076120a35911504b917abbbd2f37ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 50
   anim: {fileID: 0}
   manager: {fileID: 0}
   attackTime: 0
@@ -510,6 +513,35 @@ MonoBehaviour:
   playerMask:
     serializedVersion: 2
     m_Bits: 128
+--- !u!65 &5321865429251934704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3769594716727251423}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 0.87}
+  m_Center: {x: 0, y: 1.2, z: 0.1}
+--- !u!54 &3612838826688772823
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3769594716727251423}
+  serializedVersion: 2
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4171680738879262597
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ public class Enemy : MonoBehaviour
     bool hasPoison;
     bool hasStun;
 
+    [Tooltip("Vida máxima del enemigo.")]
+    public int maxHealth = 10;
+
     public Animator anim;
     public GameManager manager;
 
@@ -84,6 +87,9 @@ public class Enemy : MonoBehaviour
         player = manager.PlayerInstance;
 
         healthSlider = transform.GetComponentInChildren<Slider>();
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
+        health = maxHealth;
         //healthSlider = transform.Find("CanvasEnemy").Find("HealthBar").GetComponent<Slider>();
     }
 
