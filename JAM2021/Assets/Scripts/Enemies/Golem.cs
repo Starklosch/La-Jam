@@ -64,11 +64,23 @@ public class Golem : Enemy
     public void AttackEnd(AttackType type)
     {
         Debug.Log(name + " used " + type);
-        player.Mana.Harm(damage);
+        
+        if (Physics.CheckSphere(nav.destination, 3, playerMask))
+            player.Mana.Harm(damage);
 
         attackCooldown = Time.deltaTime + attackTime;
         canAttack = true;
         IsStopped = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        var color = Gizmos.color;
+        Gizmos.color = Color.red;
+
+        if (nav != null)
+            Gizmos.DrawWireSphere(nav.destination, 3);
+        Gizmos.color = color;
     }
 
     //public override void Chase()

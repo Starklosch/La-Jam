@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Demonio : Enemy
+public class Bruja : Enemy
 {
 
-    int animAttackL, animAttackR, animClawL, animClawR;
+    int animSpell1;
+    int animSpell2;
 
     public override void Start()
     {
         base.Start();
 
-        animAttackL = Animator.StringToHash("AttackL");
-        animAttackR = Animator.StringToHash("AttackR");
-        animClawL = Animator.StringToHash("ClawL");
-        animClawR = Animator.StringToHash("ClawR");
+        animSpell1 = Animator.StringToHash("Spell1");
+        animSpell2 = Animator.StringToHash("Spell2");
     }
 
     public override void Attack()
@@ -23,20 +22,16 @@ public class Demonio : Enemy
 
         if (canAnim)
         {
-            int ani = Random.Range(0, 4);
+            int ani = Random.Range(0, 2);
             switch (ani)
             {
                 case 0:
-                    anim.SetTrigger(animAttackL);
+                    anim.SetTrigger(animSpell1);
                     break;
                 case 1:
-                    anim.SetTrigger(animAttackR);
+                    anim.SetTrigger(animSpell2);
                     break;
-                case 2:
-                    anim.SetTrigger(animClawL);
-                    break;
-                case 3:
-                    anim.SetTrigger(animClawR);
+                default:
                     break;
             }
 
@@ -55,17 +50,24 @@ public class Demonio : Enemy
         IsStopped = false;
     }
 
+    private void OnDrawGizmos()
+    {
+        var color = Gizmos.color;
+        Gizmos.color = Color.red;
+
+        if (nav != null)
+            Gizmos.DrawWireSphere(nav.destination, 3);
+        Gizmos.color = color;
+    }
+
     public override void Update()
     {
         base.Update();
-
     }
 
     public enum AttackType
     {
-        SimpleL,
-        SimpleR,
-        ClawL,
-        ClawR
+        Spell1,
+        Spell2
     }
 }

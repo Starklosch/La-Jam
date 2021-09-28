@@ -39,10 +39,9 @@ public class Enemy : MonoBehaviour
     {
         set
         {
-            Debug.Log("CanMove: " + value);
+            //Debug.Log("IsStopd: " + value);
             //m_canMove = value;
             nav.isStopped = value;
-            MoveAnim = !value;
         }
         get => nav.isStopped;
     }
@@ -60,6 +59,8 @@ public class Enemy : MonoBehaviour
     //protected bool useDefaultLogic = true;
 
     protected NavMeshAgent nav;
+
+    public LayerMask playerMask;
 
     public virtual void Start()
     {
@@ -104,9 +105,6 @@ public class Enemy : MonoBehaviour
         if (player == null)
             return;
 
-        Debug.Log(IsStopped);
-        Debug.Log(IsStopped);
-
         var pDistance = Vector3.Distance(player.transform.position, transform.position);
 
         if (!IsStopped && pDistance < chaseDistance)
@@ -122,7 +120,7 @@ public class Enemy : MonoBehaviour
             if (canAttack && Time.time > attackCooldown)
                 Attack();
         }
-        else
+        else if (canAttack)
         {
             IsStopped = false;
         }

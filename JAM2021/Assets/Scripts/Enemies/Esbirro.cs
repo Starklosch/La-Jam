@@ -17,7 +17,9 @@ public class Esbirro : Enemy
     protected void AttackEnd()
     {
         Debug.Log(name + " attacked");
-        player.Mana.Harm(damage);
+
+        if (Physics.CheckSphere(nav.destination, 3, playerMask))
+            player.Mana.Harm(damage);
 
         attackCooldown = Time.deltaTime + attackTime;
         canAttack = true;
