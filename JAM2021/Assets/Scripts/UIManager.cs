@@ -116,14 +116,22 @@ public class UIManager : MonoBehaviour
             case Chest.ChestType.Reward:
                 chestPanels.Find("NewCardPanel").gameObject.SetActive(true);
                 //Se muestra la newCard en la imagen
+                chestPanels.Find("NewCardPanel").Find("Card").GetComponent<Image>().sprite = GameManager.Instance.CardsData[newCard].image;
+                chestPanels.Find("NewCardPanel").Find("CardDescription").GetComponent<Text>().text = GameManager.Instance.CardsData[newCard].description;
                 break;
-            case Chest.ChestType.ForcedTrade:
-                chestPanels.Find("TradeCardPanel").gameObject.SetActive(true);
-                //Se muestra la carta descartada deckCard y la nueva carta newCard
-                break;
+
             case Chest.ChestType.Trap:
                 chestPanels.Find("DiscardCardPanel").gameObject.SetActive(true);
                 //Se muestra la carta descartada deckCard del deck
+                chestPanels.Find("DiscardCardPanel").Find("Card").GetComponent<Image>().sprite = GameManager.Instance.CardsData[deckCard].image;
+                break;
+
+            case Chest.ChestType.ForcedTrade:
+                chestPanels.Find("TradeCardPanel").gameObject.SetActive(true);
+                //Se muestra la carta descartada deckCard y la nueva carta newCard
+                chestPanels.Find("TradeCardPanel").Find("Card1").GetComponent<Image>().sprite = GameManager.Instance.CardsData[deckCard].image;
+                chestPanels.Find("TradeCardPanel").Find("Card2").GetComponent<Image>().sprite = GameManager.Instance.CardsData[newCard].image;
+                chestPanels.Find("TradeCardPanel").Find("CardDescription").GetComponent<Text>().text = GameManager.Instance.CardsData[newCard].description;
                 break;
         }
     }
