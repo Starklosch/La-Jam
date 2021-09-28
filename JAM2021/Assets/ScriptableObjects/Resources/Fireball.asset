@@ -19,3 +19,4 @@ MonoBehaviour:
   manaCost: 5
   damage: 10
   duration: 0
+  image: {fileID: 21300000, guid: 23868b92b09a21b43a0e0e98e52ea2de, type: 3}

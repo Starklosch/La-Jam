@@ -15,4 +15,5 @@ public class ScriptableCard : ScriptableObject
     public float damage;
     [Tooltip("For spells")]
     public float duration;
+    public Sprite image;
 }

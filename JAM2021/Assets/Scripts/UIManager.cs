@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.SetCanvas(this);
         weaponDurabilityBar = transform.Find("WeaponDurabilityBar");
         buffDurationBar = transform.Find("BuffDurationBar");
+
+        GameManager.Instance.UpdateAllCardImages();
     }
     //Durability of weapon
     public void ShowDurabilityBar(bool b)
@@ -54,6 +56,12 @@ public class UIManager : MonoBehaviour
     public void UpdateCursor(int i)
     {
         cardsSelectorDisplay.UpdateCursorUI(i);
+    }
+
+    public void UpdateCardImage(int i, GameManager.Cards c)
+    {
+        if(c!=GameManager.Cards.None) cardsSelectorDisplay.UpdateCardImageUI(i,GameManager.Instance.CardsData[c].image);
+        else cardsSelectorDisplay.UpdateCardImageUI(i, null);
     }
 
     public void ShowE()

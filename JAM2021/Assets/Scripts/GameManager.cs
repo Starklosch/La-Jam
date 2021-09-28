@@ -125,7 +125,6 @@ public class GameManager : MonoBehaviour
 
         foreach (var item in cards)
         {
-            Debug.Log(item.id);
             cardsData[item.id] = item;
         }
 
@@ -178,7 +177,7 @@ public class GameManager : MonoBehaviour
     {
         if(chestCardHolding != Cards.None)
         {
-            deck.Enqueue(chestCardHolding);
+            AddToDeck(chestCardHolding);
             chestCardHolding = Cards.None;
         }
         SetPause(false);
@@ -222,6 +221,12 @@ public class GameManager : MonoBehaviour
     public void AddToDeck(Cards card)
     {
         deck.Enqueue(card);
+        int getEmptyIndex = AnyEmptySlot();
+        if(getEmptyIndex != -1)
+        {
+            hand[getEmptyIndex] = RemoveFromDeck();
+            UIManagerInstance.UpdateCardImage(getEmptyIndex, hand[getEmptyIndex]);
+        }
     }
 
     public Cards RemoveFromDeck()
@@ -236,10 +241,23 @@ public class GameManager : MonoBehaviour
         return (hand[0]==Cards.None && hand[1] == Cards.None && hand[2] == Cards.None);
     }
 
+    int AnyEmptySlot()
+    {
+        int i = 0;
+        while (i < hand.Length)
+        {
+            if (hand[i] == Cards.None)
+            {
+                return i;
+            }
+            i++;
+        }
+        return -1;
+    }
+
     void ShuffleDiscarded()
     {
-        //O(n/2)
-        for (int i = 0; i < discarded.Count/2; i++)
+        for (int i = 0; i < discarded.Count; i++)
         {
             Cards temp = discarded[i];
             int randomIndex = Random.Range(i, discarded.Count);
@@ -310,6 +328,7 @@ public class GameManager : MonoBehaviour
 
         discarded.Add(hand[cursorIndex]);
         hand[cursorIndex] = Cards.None;
+        UIManagerInstance.UpdateCardImage(cursorIndex, hand[cursorIndex]);
         //CD de uso empieza
         //Animacion de descarte
 
@@ -319,16 +338,24 @@ public class GameManager : MonoBehaviour
 
             ShuffleDiscarded();
             MoveDiscardedToDeck();
-            //Poner 3 en mano
-            for(int i = 0; i < 3; i++)
-            {
-                hand[i] = RemoveFromDeck();
-            }
+
+            UpdateAllCardImages();
         }
         else if (deck.Count>0)
         {
             //Animacion de robar si hay cartas en deck
             hand[cursorIndex] = RemoveFromDeck();
+            UIManagerInstance.UpdateCardImage(cursorIndex, hand[cursorIndex]);
+        }
+
+        Debug.Log(deck.Count);
+    }
+
+    public void UpdateAllCardImages() 
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            UIManagerInstance.UpdateCardImage(i, hand[i]);
         }
     }
 
