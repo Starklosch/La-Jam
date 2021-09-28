@@ -30,8 +30,21 @@ public class Enemy : MonoBehaviour
 
     protected float attackCooldown;
     protected bool canAttack = true;
-    protected bool canMove = true;
+    protected bool isMoving = false;
+    protected bool m_canMove = true;
+
     protected PlayerController player;
+
+    protected bool IsStopped
+    {
+        set
+        {
+            Debug.Log("CanMove: " + value);
+            //m_canMove = value;
+            nav.isStopped = value;
+        }
+        get => nav.isStopped;
+    }
 
     protected bool MoveAnim
     {
@@ -61,6 +74,9 @@ public class Enemy : MonoBehaviour
             manager = GameManager.Instance;
         }
 
+        if (damage <= 0 || attackDistance <= 0 || chaseDistance <= 0)
+            Debug.LogWarning("Cuidado, hay variables sin definir");
+
         nav = GetComponent<NavMeshAgent>();
 
         player = manager.PlayerInstance;
@@ -84,44 +100,45 @@ public class Enemy : MonoBehaviour
         if (player == null && manager.PlayerInstance != null)
             player = manager.PlayerInstance;
 
-        //if (useDefaultLogic)
-        //{
-        //    if (player != null)
-        //    {
-        //        var pDistance = Vector3.Distance(player.transform.position, transform.position);
-        //        if (pDistance < attackDistance)
-        //        {
-        //            if (canAttack && Time.time > attackCooldown)
-        //                Attack();
-        //        }
-        //        else if (pDistance < chaseDistance)
-        //        {
-        //            Chase();
-        //        }
-        //    }
-        //}
-    }
+        if (player == null)
+            return;
 
-    public virtual void Chase()
-    {
-        canAttack = false;
+        var pDistance = Vector3.Distance(player.transform.position, transform.position);
 
-        MoveAnim = true;
+        if (!IsStopped && pDistance < chaseDistance)
+        {
+            nav.SetDestination(player.transform.position);
+            MoveAnim = true;
+        }
+
+        if (pDistance < attackDistance)
+        {
+            IsStopped = true;
+            MoveAnim = false;
+            if (canAttack && Time.time > attackCooldown)
+                Attack();
+        }
+        else
+        {
+            IsStopped = false;
+        }
     }
 
     public virtual void Attack()
     {
+        Debug.Log("Attack");
         canAttack = false;
-        canMove = false;
+        //CanMove = false;
     }
 
-    protected virtual void AttackEnd()
-    {
-        canAttack = true;
-        canMove = true;
+    //protected virtual void AttackEnd()
+    //{
+    //    Debug.Log("Attack end");
+    //    canAttack = true;
+    //    IsStopped = true;
 
-        attackCooldown = Time.deltaTime + attackTime;
-    }
+    //    attackCooldown = Time.deltaTime + attackTime;
+    //}
 
     public virtual void Heal(int h)
     {

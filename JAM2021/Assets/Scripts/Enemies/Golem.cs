@@ -18,48 +18,26 @@ public class Golem : Enemy
         animAttackRange = Animator.StringToHash("AttackRange");
     }
 
-    public override void Update()
-    {
-        base.Update();
+    //public override void Heal(int h)
+    //{
+    //    base.Heal(h);
+    //}
 
-        if (player != null)
-        {
-            var pDistance = Vector3.Distance(player.transform.position, transform.position);
-            if (canAttack)
-            {
-                if (pDistance < attackDistance)
-                {
-                    if (Time.time > attackCooldown)
-                        Attack();
-                }
-                else if (pDistance < chaseDistance)
-                {
-                    Chase();
-                }
-            }
-        }
-    }
+    //public override bool TakeDamage(int d)
+    //{
+    //    //Sonido de daño golem
+    //    if (base.TakeDamage(d))
+    //    {
+    //        Die();
+    //    }
+    //    return false;
+    //}
 
-    public override void Heal(int h)
-    {
-        base.Heal(h);
-    }
-
-    public override bool TakeDamage(int d)
-    {
-        //Sonido de daño golem
-        if (base.TakeDamage(d))
-        {
-            Die();
-        }
-        return false;
-    }
-
-    public override void Die()
-    {
-        //Sonido de muerte golem
-        base.Die();
-    }
+    //public override void Die()
+    //{
+    //    //Sonido de muerte golem
+    //    base.Die();
+    //}
 
     public override void Attack()
     {
@@ -85,16 +63,25 @@ public class Golem : Enemy
 
     public void AttackEnd(AttackType type)
     {
-        AttackEnd();
-
         Debug.Log(name + " used " + type);
         player.Mana.Harm(damage);
+
+        attackCooldown = Time.deltaTime + attackTime;
+        canAttack = true;
+        IsStopped = false;
     }
 
-    public override void Chase()
+    //public override void Chase()
+    //{
+    //    base.Chase();
+    //    //Debug.Log(nav);
+    //    nav.SetDestination(player.transform.position);
+    //}
+
+    public override void Update()
     {
-        Debug.Log(nav);
-        nav.SetDestination(player.transform.position);
+        base.Update();
+
     }
 
     public enum AttackType

@@ -14,37 +14,20 @@ public class Esbirro : Enemy
         AttackAnim();
     }
 
-    protected override void AttackEnd()
+    protected void AttackEnd()
     {
-        base.AttackEnd();
-
+        Debug.Log(name + " attacked");
         player.Mana.Harm(damage);
+
+        attackCooldown = Time.deltaTime + attackTime;
+        canAttack = true;
+        IsStopped = false;
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (player != null)
-        {
-            var pDistance = Vector3.Distance(player.transform.position, transform.position);
-            if (canAttack)
-            {
-                if (pDistance < attackDistance)
-                {
-                    if (Time.time > attackCooldown)
-                        Attack();
-                }
-                else if (pDistance < chaseDistance)
-                {
-                    Chase();
-                }
-            }
-        }
     }
 
-    public override void Chase()
-    {
-        nav.SetDestination(player.transform.position);
-    }
 }
