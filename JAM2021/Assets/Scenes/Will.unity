@@ -1125,7 +1125,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: A card were removed from your deck!
+  m_Text: A card was removed from your deck!
 --- !u!222 &298519353
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3486,6 +3486,10 @@ MonoBehaviour:
   damage: 0
   chaseDistance: 0
   attackDistance: 0
+  hasMoveAnimation: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
   maxHealth: 10
 --- !u!54 &961563979
 Rigidbody:
