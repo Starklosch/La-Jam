@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
@@ -10,6 +11,7 @@ public class Enemy : MonoBehaviour
     protected bool canAnim = false;
 
     protected int animAttackTrigger;
+    protected int animMove;
 
     float currentStunDuration;
     bool hasPoison;
@@ -24,23 +26,42 @@ public class Enemy : MonoBehaviour
     public float chaseDistance;
     public float attackDistance;
 
+    public bool hasMoveAnimation = false;
+
     protected float attackCooldown;
     protected bool canAttack = true;
-
+    protected bool canMove = true;
     protected PlayerController player;
+
+    protected bool MoveAnim
+    {
+        get => anim.GetBool(animMove);
+        set
+        {
+            if (canAnim && hasMoveAnimation)
+                anim.SetBool(animMove, value);
+        }
+    }
+
+    //protected bool useDefaultLogic = true;
+
+    protected NavMeshAgent nav;
 
     public virtual void Start()
     {
-        if (anim == null && TryGetComponent(out anim))
+        if (anim != null || TryGetComponent(out anim) || (anim = transform.GetComponentInChildren<Animator>()) != null)
         {
             canAnim = true;
 
             animAttackTrigger = Animator.StringToHash("Attack");
+            animMove = Animator.StringToHash("Move");
         }
         if (manager == null)
         {
             manager = GameManager.Instance;
         }
+
+        nav = GetComponent<NavMeshAgent>();
 
         player = manager.PlayerInstance;
 
@@ -62,31 +83,43 @@ public class Enemy : MonoBehaviour
 
         if (player == null && manager.PlayerInstance != null)
             player = manager.PlayerInstance;
+
+        //if (useDefaultLogic)
+        //{
+        //    if (player != null)
+        //    {
+        //        var pDistance = Vector3.Distance(player.transform.position, transform.position);
+        //        if (pDistance < attackDistance)
+        //        {
+        //            if (canAttack && Time.time > attackCooldown)
+        //                Attack();
+        //        }
+        //        else if (pDistance < chaseDistance)
+        //        {
+        //            Chase();
+        //        }
+        //    }
+        //}
     }
 
     public virtual void Chase()
     {
         canAttack = false;
 
-        if (canAnim)
-            anim.SetTrigger(animAttackTrigger);
-
+        MoveAnim = true;
     }
 
     public virtual void Attack()
     {
         canAttack = false;
-
-        if (canAnim)
-            anim.SetTrigger(animAttackTrigger);
-
+        canMove = false;
     }
 
-    public virtual void AttackEnd()
+    protected virtual void AttackEnd()
     {
         canAttack = true;
+        canMove = true;
 
-        player.Mana.Harm(damage);
         attackCooldown = Time.deltaTime + attackTime;
     }
 
@@ -146,4 +179,13 @@ public class Enemy : MonoBehaviour
         currentStunDuration = duration;
         Debug.Log("STUNNED");
     }
+
+    // Animations
+
+    protected virtual void AttackAnim()
+    {
+        if (canAnim)
+            anim.SetTrigger(animAttackTrigger);
+    }
+
 }

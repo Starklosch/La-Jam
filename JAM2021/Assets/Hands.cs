@@ -12,28 +12,18 @@ public class Hands : MonoBehaviour
     int animAttack = 0;
     int animCastSpell = 0;
 
-    bool m_holdCard, m_equiped;
+    //bool m_holdCard, m_equiped;
 
     public bool HoldCard
     {
-        get => m_holdCard;
-        set
-        {
-            m_holdCard = value;
-
-            anim.SetBool(animHoldCard, value);
-        }
+        get => anim.GetBool(animHoldCard);
+        set => anim.SetBool(animHoldCard, value);
     }
 
     public bool Equiped
     {
-        get => m_equiped;
-        set
-        {
-            m_equiped = value;
-
-            anim.SetBool(animEquiped, value);
-        }
+        get => anim.GetBool(animEquiped);
+        set => anim.SetBool(animEquiped, value);
     }
 
     public void PlayCard()

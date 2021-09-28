@@ -12,7 +12,7 @@ public class ManaSystem : MonoBehaviour
     [SerializeField] float manaFillSpeed = 10;
 
     Slider manaSlider;
-     Slider healthSlider;
+    Slider healthSlider;
     TextMeshProUGUI manaText;
     TextMeshProUGUI healthText;
 
