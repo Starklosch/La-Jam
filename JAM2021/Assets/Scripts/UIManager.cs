@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     Transform buffDurationBar;
     Transform eKey;
     Transform chestPanels;
+    Text deckCountText;
+    Animator shuffledText;
     void Start()
     {
         cardsSelectorDisplay = GetComponentInChildren<CardsSelectorDisplay>();
@@ -19,6 +21,8 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.SetCanvas(this);
         weaponDurabilityBar = transform.Find("WeaponDurabilityBar");
         buffDurationBar = transform.Find("BuffDurationBar");
+        deckCountText = transform.Find("PlayerUI").Find("CardsDeck").Find("Num").GetComponent<Text>();
+        shuffledText = transform.Find("PlayerUI").Find("CardsDeck").Find("ShuffledText").GetComponent<Animator>();
 
         GameManager.Instance.UpdateAllCardImages();
     }
@@ -62,6 +66,16 @@ public class UIManager : MonoBehaviour
     {
         if(c!=GameManager.Cards.None) cardsSelectorDisplay.UpdateCardImageUI(i,GameManager.Instance.CardsData[c].image);
         else cardsSelectorDisplay.UpdateCardImageUI(i, null);
+    }
+
+    public void UpdateDeckCount(int i)
+    {
+        deckCountText.text = i.ToString();
+    }
+
+    public void PlayShuffledTextAnimationUI()
+    {
+        shuffledText.Play("FadeInOutText", -1, 0.0f);
     }
 
     public void ShowE()

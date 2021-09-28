@@ -11,10 +11,10 @@ public class ManaSystem : MonoBehaviour
     [SerializeField] float maxMana = 100;
     [SerializeField] float manaFillSpeed = 10;
 
-    [SerializeField] Slider manaSlider;
-    [SerializeField] Slider healthSlider;
-    [SerializeField] TextMeshProUGUI manaText;
-    [SerializeField] TextMeshProUGUI healthText;
+    Slider manaSlider;
+     Slider healthSlider;
+    TextMeshProUGUI manaText;
+    TextMeshProUGUI healthText;
 
     [Min(0)]
     float m_health = 0, m_mana = 0;

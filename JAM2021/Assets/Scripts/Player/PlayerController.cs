@@ -258,7 +258,7 @@ public class PlayerController : MonoBehaviour
         //Suma el input a la camara
         cameraVerticalAngle += inputHandler.GetLookInputsVertical() * rotationSpeed;
 
-        // limita el movimiento vertical de la camara
+        //Limita el movimiento vertical de la camara
         cameraVerticalAngle = Mathf.Clamp(cameraVerticalAngle, -89f, 89f);
 
         //Aplica el angulo vertical de forma local a la camara para que pivotee
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
 
         //Convierte el input de movimiento a worldspace basado en la orientacion del player transform
         Vector3 worldspaceMoveInput = transform.TransformVector(inputHandler.GetMoveInput());
-        //Debug.Log(IsGrounded);
+
         //Gestion de tocar el suelo
         if (IsGrounded)
         {

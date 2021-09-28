@@ -788,7 +788,7 @@ MonoBehaviour:
   movementSharpnessOnGround: 20
   maxSpeedInAir: 5
   accelerationSpeedInAir: 15
-  sprintSpeedModifier: 1.7
+  sprintSpeedModifier: 1.6
   rotationSpeed: 200
   jumpForce: 9
   jumpForceModifier: 1.7
@@ -809,10 +809,6 @@ MonoBehaviour:
   baseHealth: 100
   maxMana: 100
   manaFillSpeed: 10
-  manaSlider: {fileID: 0}
-  healthSlider: {fileID: 0}
-  manaText: {fileID: 0}
-  healthText: {fileID: 0}
 --- !u!114 &4160687775588268671
 MonoBehaviour:
   m_ObjectHideFlags: 0

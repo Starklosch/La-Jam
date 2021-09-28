@@ -226,12 +226,16 @@ public class GameManager : MonoBehaviour
             hand[getEmptyIndex] = RemoveFromDeck();
             UIManagerInstance.UpdateCardImage(getEmptyIndex, hand[getEmptyIndex]);
         }
+        UIManagerInstance.UpdateDeckCount(deck.Count);
     }
 
     public Cards RemoveFromDeck()
     {
         if (deck.Count > 0)
+        {
+            UIManagerInstance.UpdateDeckCount(deck.Count-1);
             return deck.Dequeue();
+        }
         else return Cards.None;
     }
 
@@ -256,6 +260,7 @@ public class GameManager : MonoBehaviour
 
     void ShuffleDiscarded()
     {
+        UIManagerInstance.PlayShuffledTextAnimationUI();
         for (int i = 0; i < discarded.Count; i++)
         {
             Cards temp = discarded[i];
@@ -346,8 +351,6 @@ public class GameManager : MonoBehaviour
             hand[cursorIndex] = RemoveFromDeck();
             UIManagerInstance.UpdateCardImage(cursorIndex, hand[cursorIndex]);
         }
-
-        Debug.Log("Deck: " + deck.Count);
     }
 
     public void UpdateAllCardImages() 
