@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7275657367356138042}
   - component: {fileID: 7275657367356138041}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: RenderText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -163,7 +163,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -223,10 +223,11 @@ MonoBehaviour:
   textPositioning: 4
   textAlignment: 1
   renderTexture: {fileID: 0}
-  renderTextureSize: {x: 4096, y: 4096}
+  renderTextureSize: {x: 1024, y: 1024}
   font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-  fontSize: 50
+  fontSize: 32
   fontStyle: 0
   cullingMask:
     serializedVersion: 2
     m_Bits: 256
+  maxCharsPerLine: 12

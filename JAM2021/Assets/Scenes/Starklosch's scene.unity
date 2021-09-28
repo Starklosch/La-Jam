@@ -3139,26 +3139,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RenderText
       objectReference: {fileID: 0}
-    - target: {fileID: 7275657367356138041, guid: 049a51de5c24e2544bb03948a3d44c88, type: 3}
-      propertyPath: fontSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 7275657367356138041, guid: 049a51de5c24e2544bb03948a3d44c88, type: 3}
-      propertyPath: maxCharsPerLine
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7275657367356138041, guid: 049a51de5c24e2544bb03948a3d44c88, type: 3}
-      propertyPath: renderTextureSize.x
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 7275657367356138041, guid: 049a51de5c24e2544bb03948a3d44c88, type: 3}
-      propertyPath: renderTextureSize.y
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 7275657367356138044, guid: 049a51de5c24e2544bb03948a3d44c88, type: 3}
-      propertyPath: m_TargetDisplay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7275657367356138045, guid: 049a51de5c24e2544bb03948a3d44c88, type: 3}
       propertyPath: m_RootOrder
       value: 9
