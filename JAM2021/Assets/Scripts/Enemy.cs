@@ -43,8 +43,9 @@ public class Enemy : MonoBehaviour
         }
 
         player = manager.PlayerInstance;
-            
-        healthSlider = transform.Find("CanvasEnemy").Find("HealthBar").GetComponent<Slider>();
+
+        healthSlider = transform.GetComponentInChildren<Slider>();
+        //healthSlider = transform.Find("CanvasEnemy").Find("HealthBar").GetComponent<Slider>();
     }
 
     public virtual void Update()

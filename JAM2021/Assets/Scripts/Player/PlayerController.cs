@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Altura del jugador")]
     public float capsuleHeightStanding = 1.8f;
 
+    public LayerMask chestMask;
+
     public Vector3 CharacterVelocity { get; set; }
     public bool IsGrounded { get; private set; }
     public bool HasJumpedThisFrame { get; private set; }
@@ -185,7 +187,7 @@ public class PlayerController : MonoBehaviour
     void AimCheck()
     {
         RaycastHit hit;
-        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, showEDistance))
+        if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, showEDistance, chestMask))
         {
             Chest c = hit.transform.GetComponent<Chest>();
             if (c)

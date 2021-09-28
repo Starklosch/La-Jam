@@ -51,6 +51,9 @@ public class Card : MonoBehaviour
 
         textReference = Shader.PropertyToID(textReferenceName);
 
+        if (renderText == null && (renderText = FindObjectOfType<RenderText>()) == null)
+            Debug.LogWarning("Missing RenderText!");
+
         var size = renderText.TextureSize;
         savedTex = new Texture2D(size.x, size.y);
 

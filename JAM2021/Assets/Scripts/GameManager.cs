@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
         cardsData = new Dictionary<Cards, ScriptableCard>();
         var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
 
+        Debug.Log(cards.Length);
         foreach (var item in cards)
         {
             cardsData[item.id] = item;

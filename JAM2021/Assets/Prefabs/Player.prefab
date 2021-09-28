@@ -640,7 +640,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1783
+    m_Bits: 3831
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -794,6 +794,9 @@ MonoBehaviour:
   jumpForceModifier: 1.7
   cameraHeightRatio: 0.8
   capsuleHeightStanding: 1.8
+  chestMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &7166913572046798558
 MonoBehaviour:
   m_ObjectHideFlags: 0

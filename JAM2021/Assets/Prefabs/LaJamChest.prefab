@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 5869629727723553178}
   - component: {fileID: 120599644149361106}
   - component: {fileID: 8060826431579184177}
+  - component: {fileID: 1317778514123963391}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -111,6 +112,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1317778514123963391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474886761059401256}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.025, y: 0.015, z: 0.012}
+  m_Center: {x: 0, y: 0, z: 0.007}
 --- !u!1 &1881722379510636547
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +218,7 @@ GameObject:
   - component: {fileID: 1330924126}
   - component: {fileID: 1330924127}
   - component: {fileID: 1016304476}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LaJamChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,10 +248,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3360351299201243328}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.025, y: 0.02, z: 0.02}
+  m_Size: {x: 0.028, y: 0.022, z: 0.025}
   m_Center: {x: 0, y: 0, z: 0.01}
 --- !u!114 &1330924127
 MonoBehaviour:
