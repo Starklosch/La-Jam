@@ -7,7 +7,7 @@ public class Weapons : MonoBehaviour
     GameObject currentWeapon = null;
     GameObject hit;
     bool hasWeapon;
-    Transform hand;
+    public Transform hand;
     //Espera entre golpeo y golpeo
     [Tooltip("Espera entre golpeo y golpeo")]
     public float hitRatio = 0.4f;
@@ -22,7 +22,6 @@ public class Weapons : MonoBehaviour
     {
         currentDamage = 0;
         hasWeapon = false;
-        hand = transform.Find("Main Camera").Find("PlayerHand");
         hit = transform.Find("MeleeHit").gameObject;
     }
 
@@ -63,6 +62,7 @@ public class Weapons : MonoBehaviour
 
     public void UseWeapon()
     {
+        Debug.Log("a");
         if (hitRatio > Time.time - lastTime) return;
 
         hit.SetActive(true);

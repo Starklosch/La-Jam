@@ -1114,6 +1114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd18e6073239314886589d05f211d2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardsScriptables: []
 --- !u!4 &985090738
 Transform:
   m_ObjectHideFlags: 0
