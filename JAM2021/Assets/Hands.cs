@@ -36,9 +36,20 @@ public class Hands : MonoBehaviour
         anim.SetTrigger(animAttack);
     }
 
+    public void Equip()
+    {
+        if (!Equiped)
+            Equiped = true;
+    }
+
     public void CastSpell()
     {
         anim.SetTrigger(animCastSpell);
+    }
+
+    public void ShowWeapon()
+    {
+        Debug.Log("Show");
     }
 
     // Start is called before the first frame update
