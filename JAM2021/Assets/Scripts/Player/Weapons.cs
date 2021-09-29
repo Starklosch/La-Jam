@@ -67,6 +67,8 @@ public class Weapons : MonoBehaviour
 
         hit.SetActive(true);
 
+        Debug.Log("Pegar");
+
         lastTime = Time.time;
     }
 

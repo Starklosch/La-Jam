@@ -134,7 +134,7 @@ public class Enemy : MonoBehaviour
 
     public virtual void Attack()
     {
-        Debug.Log("Attack");
+        //Debug.Log("Attack");
         canAttack = false;
         //CanMove = false;
     }
