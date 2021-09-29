@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
             x = Random.Range(x, x);
             y = Random.Range(y, y);
             z = Random.Range(z, z);
-            Instantiate(enemy, center + new Vector3(x, y, z), Quaternion.identity);
+            Instantiate(enemy, center + transform.position + new Vector3(x, y, z), Quaternion.identity);
 
             nextTime = Time.time + delayBetweenEnemy;
 
