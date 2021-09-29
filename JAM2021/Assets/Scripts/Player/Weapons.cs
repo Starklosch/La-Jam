@@ -62,12 +62,9 @@ public class Weapons : MonoBehaviour
 
     public void UseWeapon()
     {
-        Debug.Log("a");
         if (hitRatio > Time.time - lastTime) return;
 
         hit.SetActive(true);
-
-        Debug.Log("Pegar");
 
         lastTime = Time.time;
     }

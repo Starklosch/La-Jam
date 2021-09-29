@@ -121,6 +121,9 @@ public class Enemy : MonoBehaviour
 
         if (pDistance < attackDistance)
         {
+            Vector3 direction = (player.transform.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * nav.speed);
             IsStopped = true;
             MoveAnim = false;
             if (canAttack && Time.time > attackCooldown)
