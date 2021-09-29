@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return _instance; } }
 
+    [SerializeField] ScriptableCard[] cardsScriptables;
+
 
     private void Awake()
     {
@@ -24,11 +26,13 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
-        cardsData = new Dictionary<Cards, ScriptableCard>();
-        var cards = Resources.FindObjectsOfTypeAll<ScriptableCard>();
+        if (cardsScriptables.Length <= 0)
+            cardsScriptables = Resources.FindObjectsOfTypeAll<ScriptableCard>();
 
-        Debug.Log(cards.Length);
-        foreach (var item in cards)
+        cardsData = new Dictionary<Cards, ScriptableCard>();
+
+        Debug.Log(cardsScriptables.Length);
+        foreach (var item in cardsScriptables)
         {
             cardsData[item.id] = item;
         }
