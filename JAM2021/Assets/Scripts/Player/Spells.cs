@@ -16,7 +16,7 @@ public class Spells : MonoBehaviour
     }
     //**Same order as SpellType order
     public GameObject[] prefabs;
-    Transform hand;
+    public Transform projectileOrigin;
     bool hasSpell;
     SpellType currentType;
     GameManager.Cards currentSpellCard;
@@ -27,7 +27,6 @@ public class Spells : MonoBehaviour
         currentType = SpellType.None;
         currentSpellCard = GameManager.Cards.None;
         hasSpell = false;
-        hand = transform.Find("Main Camera").Find("PlayerHand");
         playerController = GetComponent<PlayerController>();
     }
 
@@ -38,11 +37,11 @@ public class Spells : MonoBehaviour
 
     public void ShootSpell()
     {
-        var proj = Instantiate(prefabs[(int)currentType], hand.position, Quaternion.identity).GetComponent<Projectile>();
+        var proj = Instantiate(prefabs[(int)currentType], projectileOrigin.position, Quaternion.identity).GetComponent<Projectile>();
 
         if (playerController.GetHitPoint() != Vector3.zero)
         {
-            proj.direction = (playerController.GetHitPoint() - hand.position).normalized;
+            proj.direction = (playerController.GetHitPoint() - projectileOrigin.position).normalized;
         }
         else
         {

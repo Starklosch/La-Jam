@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Weapons : MonoBehaviour
 {
+    [Tooltip("Referencia a la mano del jugador")]
+    public Hands handAnimation;
+
     GameObject currentWeapon = null;
     GameObject hit;
     bool hasWeapon;
@@ -44,6 +47,8 @@ public class Weapons : MonoBehaviour
         currentDurability = GameManager.Instance.CardsData[c].duration;
         GameManager.Instance.GetCanvas().SetWDurabilitySliderMax((int)currentDurability);
         GameManager.Instance.GetCanvas().SetWDurabilitySliderValue((int)currentDurability);
+
+        handAnimation.Equiped = true;
     }
 
     public void DisableWeapon()
@@ -53,6 +58,8 @@ public class Weapons : MonoBehaviour
         hasWeapon = false;
         currentDamage = 0;
         GameManager.Instance.GetCanvas().ShowDurabilityBar(false);
+
+        handAnimation.Equiped = false;
     }
 
     public bool HasWeaponInHand()

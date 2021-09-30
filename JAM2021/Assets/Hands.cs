@@ -62,6 +62,8 @@ public class Hands : MonoBehaviour
         animEquiped = Animator.StringToHash("Equiped");
         animAttack = Animator.StringToHash("Attack");
         animCastSpell = Animator.StringToHash("CastSpell");
+
+        HoldCard = true;
     }
 
 }

@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Referencia a la camara del jugador")]
     public Camera playerCamera;
 
+    [Tooltip("Referencia a la mano del jugador")]
+    public Hands handAnimation;
+
     [Header("General")]
     [Tooltip("Fuerza de gravedad aplicada al jugador")]
     public float gravityDownForce = 20f;
@@ -119,8 +122,14 @@ public class PlayerController : MonoBehaviour
             card.Text = selectedCard.description;
             card.Image = selectedCard.image.texture;
             card.ImageOffset = selectedCard.imageOffset;
+
+            handAnimation.HoldCard = true;
         }
-        else card.gameObject.SetActive(false);
+        else
+        {
+            card.gameObject.SetActive(false);
+            handAnimation.HoldCard = false;
+        }
     }
 
     void Update()
@@ -154,7 +163,11 @@ public class PlayerController : MonoBehaviour
             GameManager.Cards c = GameManager.Instance.GetCardSelected();
 
             if(c!=GameManager.Cards.None && Mana.UseMana(GameManager.Instance.CardsData[c].manaCost))
+            {
                 GameManager.Instance.UseCard();
+                handAnimation.PlayCard();
+            }
+                
         }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())
@@ -163,11 +176,13 @@ public class PlayerController : MonoBehaviour
             if (GetComponent<Weapons>().HasWeaponInHand())
             {
                 GetComponent<Weapons>().UseWeapon();
+                handAnimation.Attack();
             }
             //Si es una hechizo, lanzar
             else if (GetComponent<Spells>().HasSpellInHand())
             {
                 GetComponent<Spells>().ShootSpell();
+                handAnimation.CastSpell();
             }
             //Si es un bufo, activar
         }
