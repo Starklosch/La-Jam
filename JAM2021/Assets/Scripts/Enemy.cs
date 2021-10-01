@@ -42,11 +42,10 @@ public class Enemy : MonoBehaviour
     {
         set
         {
-            //Debug.Log("IsStopd: " + value);
-            //m_canMove = value;
-            nav.isStopped = value;
+            if (nav.isOnNavMesh)
+                nav.isStopped = value;
         }
-        get => nav.isStopped;
+        get => nav.isOnNavMesh && nav.isStopped;
     }
 
     protected bool MoveAnim
