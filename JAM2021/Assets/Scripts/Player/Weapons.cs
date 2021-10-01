@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class Weapons : MonoBehaviour
     //Weapon stats
     float currentDamage;
     float currentDurability;
+
+    Action pendingTask;
+
     void Start()
     {
         currentDamage = 0;
@@ -33,33 +37,54 @@ public class Weapons : MonoBehaviour
         if (hit.activeInHierarchy && cooldownHit < Time.time - lastTime) hit.SetActive(false);
     }
     
-    public void ActivateWeapon(GameManager.Cards c)
+    public void EnableWeapon(GameManager.Cards c)
     {
-        DisableWeapon();
-
         if (!hand) return;
-        currentWeapon = hand.GetChild((int)c).gameObject;
-        currentWeapon.SetActive(true);
-        hasWeapon = true;
-        GameManager.Instance.GetCanvas().ShowDurabilityBar(true);
 
-        currentDamage = GameManager.Instance.CardsData[c].damage;
-        currentDurability = GameManager.Instance.CardsData[c].duration;
-        GameManager.Instance.GetCanvas().SetWDurabilitySliderMax((int)currentDurability);
-        GameManager.Instance.GetCanvas().SetWDurabilitySliderValue((int)currentDurability);
+        Action enableAction = delegate ()
+        {
+            currentWeapon = hand.GetChild((int)c).gameObject;
+            currentWeapon.SetActive(true);
+            hasWeapon = true;
+            GameManager.Instance.GetCanvas().ShowDurabilityBar(true);
 
-        handAnimation.Equiped = true;
+            currentDamage = GameManager.Instance.CardsData[c].damage;
+            currentDurability = GameManager.Instance.CardsData[c].duration;
+            GameManager.Instance.GetCanvas().SetWDurabilitySliderMax((int)currentDurability);
+            GameManager.Instance.GetCanvas().SetWDurabilitySliderValue((int)currentDurability);
+        };
+
+        //if (currentWeapon != null)
+        //{
+        GameManager.Instance.PlayerInstance.Hands.Equip(delegate ()
+        {
+            if (currentWeapon != null)
+                DisableWeaponAction();
+
+            enableAction();
+        });
+        //}
+        //else
+        //{
+        //    GameManager.Instance.PlayerInstance.Hands.Equip(enableAction);
+        //}
+
     }
 
-    public void DisableWeapon()
+    public void DisableWeapon(/*Action doAfter = null*/)
     {
-        if (currentWeapon != null) currentWeapon.SetActive(false);
+        if (currentWeapon == null) return;
+
+        GameManager.Instance.PlayerInstance.Hands.Unequip(DisableWeaponAction);
+    }
+
+    void DisableWeaponAction()
+    {
+        currentWeapon.SetActive(false);
         currentWeapon = null;
         hasWeapon = false;
         currentDamage = 0;
         GameManager.Instance.GetCanvas().ShowDurabilityBar(false);
-
-        handAnimation.Equiped = false;
     }
 
     public bool HasWeaponInHand()

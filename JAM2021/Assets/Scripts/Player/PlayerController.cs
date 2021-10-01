@@ -80,6 +80,12 @@ public class PlayerController : MonoBehaviour
 
     Animator anim;
     Card card;
+    Hands hands;
+
+    public Hands Hands
+    {
+        get => hands;
+    }
 
     public ManaSystem Mana
     {
@@ -95,14 +101,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-
         inputHandler = GetComponent<PlayerInput>();
+        manaSystem = GetComponent<ManaSystem>();
 
         controller.enableOverlapRecovery = true;
 
         GameManager.Instance.SetPlayer(this);
 
-        card = FindObjectOfType<Card>();
+        card = transform.GetComponentInChildren<Card>();
+        hands = transform.GetComponentInChildren<Hands>();
+
         GameManager.Instance.CursorIndexChanged += CursorIndexChanged;
 
         playerBuffs = GetComponent<Buffs>();
@@ -164,10 +172,8 @@ public class PlayerController : MonoBehaviour
 
             if(c!=GameManager.Cards.None && Mana.UseMana(GameManager.Instance.CardsData[c].manaCost))
             {
-                GameManager.Instance.UseCard();
-                handAnimation.PlayCard();
+                handAnimation.PlayCard(GameManager.Instance.UseCard);
             }
-                
         }
         //Click izquierdo
         if (inputHandler.GetActionInputDown())

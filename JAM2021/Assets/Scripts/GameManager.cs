@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         hand[0] = Cards.Sword;
-        hand[1] = Cards.Poison;
+        hand[1] = Cards.Hammer;
         hand[2] = Cards.Speed;
 
         UpdateAllCardImages();
@@ -307,15 +307,15 @@ public class GameManager : MonoBehaviour
             case Cards.Sword:
                 //Las de tipo arma instanciaran/activaran un objeto desde GameManager y se comunicaran con un componente Weapon del jugador para indicar que tiene x arma.
                 SpellsComponent.DisableSpell();
-                WeaponsComponent.ActivateWeapon(Cards.Sword);
+                WeaponsComponent.EnableWeapon(Cards.Sword);
                 break;
             case Cards.Axe:
                 SpellsComponent.DisableSpell();
-                WeaponsComponent.ActivateWeapon(Cards.Axe);
+                WeaponsComponent.EnableWeapon(Cards.Axe);
                 break;
             case Cards.Hammer:
                 SpellsComponent.DisableSpell();
-                WeaponsComponent.ActivateWeapon(Cards.Hammer);
+                WeaponsComponent.EnableWeapon(Cards.Hammer);
                 break;
 
             case Cards.Poison:
