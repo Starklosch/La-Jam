@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2485020131665338595}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4161751134169074643}
   - component: {fileID: 8047495377855600505}
   - component: {fileID: 2794456088594870078}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6667498699647803655}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 592205417930884569}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8564723373897955044}
   - component: {fileID: 8651430768834696119}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4921618711996076092}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 3202052797396718994}
   - component: {fileID: 6372632263262504055}
   - component: {fileID: 762549123186919984}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -416,7 +416,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5213317512413723079}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Axe_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 5369228733215907659}
   - component: {fileID: 2662453419409894056}
   - component: {fileID: 254350163948267718}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 3097288582723085941}
   - component: {fileID: 2179479250350822851}
   - component: {fileID: 1488721812600904125}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: -5203700459236307431}
   - component: {fileID: 4167344719455507643}
   - component: {fileID: 8324486361478560975}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LaJamKnight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -695,7 +695,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -725,7 +725,7 @@ MonoBehaviour:
   hasMoveAnimation: 0
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!1 &7556546222153118796
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 6178063960107004087}
   - component: {fileID: 4901199680172069558}
   - component: {fileID: 524650801455182024}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CanvasEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,7 +851,7 @@ GameObject:
   - component: {fileID: 4370122525228104704}
   - component: {fileID: 6728575183752974787}
   - component: {fileID: 8860753117657832481}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 402893813062616654}
   - component: {fileID: 4689422567434268828}
   - component: {fileID: 169109233601708864}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

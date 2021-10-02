@@ -47,7 +47,7 @@ public class Demonio : Enemy
     {
         Debug.Log(name + " used " + type);
 
-        if (Physics.CheckSphere(nav.destination, 3, playerMask))
+        if (Physics.CheckSphere(nav.destination, 1.2f, playerMask))
             player.Mana.Harm(damage);
 
         attackCooldown = Time.deltaTime + attackTime;
@@ -75,6 +75,16 @@ public class Demonio : Enemy
     {
         //Sonido de muerte demonio
         base.Die();
+    }
+
+    private void OnDrawGizmos()
+    {
+        var color = Gizmos.color;
+        Gizmos.color = Color.red;
+
+        if (nav != null)
+            Gizmos.DrawWireSphere(nav.destination, 1.2f);
+        Gizmos.color = color;
     }
 
     public enum AttackType

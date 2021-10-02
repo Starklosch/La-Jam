@@ -45,6 +45,16 @@ public class Knight : Enemy
         IsStopped = false;
     }
 
+    private void OnDrawGizmos()
+    {
+        var color = Gizmos.color;
+        Gizmos.color = Color.red;
+
+        if (nav != null)
+            Gizmos.DrawWireSphere(nav.destination, 3);
+        Gizmos.color = color;
+    }
+
     public override void Update()
     {
         base.Update();

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6523250761099016497}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 367941899523839176}
   - component: {fileID: 4165908864122542873}
   - component: {fileID: 311499711495908338}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Cape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8599455628291652932}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4662143394935041772}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Wand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8332060814281232879}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Wand_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4054633762677696387}
   - component: {fileID: 8157900598996770414}
   - component: {fileID: 2860257155135830965}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -332,7 +332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6298321975974539098}
   - component: {fileID: 4162528175178940837}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 6252794871252388362}
   - component: {fileID: 5321865429251934704}
   - component: {fileID: 3612838826688772823}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LaJamBruja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -551,7 +551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2745067730612775991}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +587,7 @@ GameObject:
   - component: {fileID: 8297441112984426571}
   - component: {fileID: 939055597613704249}
   - component: {fileID: 2875695451732393369}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Wand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 6370063118243470329}
   - component: {fileID: 7787803779450456468}
   - component: {fileID: 9080544219345201457}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 3126242741335497813}
   - component: {fileID: 5924502699573170095}
   - component: {fileID: 6959066703774689976}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,7 +830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4876078511546964987}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +865,7 @@ GameObject:
   - component: {fileID: 6214942880201779188}
   - component: {fileID: 1187892334376402907}
   - component: {fileID: 7219345967457383709}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: CanvasEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   - component: {fileID: 6319026168518404624}
   - component: {fileID: 7337603021116504791}
   - component: {fileID: 1685783327670049884}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1056,7 +1056,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8588018753483379373}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
