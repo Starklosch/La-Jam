@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3892048354423085339}
   - component: {fileID: 120628306386556606}
   - component: {fileID: 2758588396016755316}
+  - component: {fileID: 3340752843258477273}
   m_Layer: 0
   m_Name: LaJamRock3
   m_TagString: Untagged
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &3340752843258477273
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415926734377468833}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1282117409599735292, guid: f1058f0ad7e402a40a39cecfe5db69fc, type: 3}
