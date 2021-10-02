@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8663459807696302854}
   - component: {fileID: 5734508796178578595}
   - component: {fileID: 7526049442655586409}
+  - component: {fileID: 1977972083764007320}
   m_Layer: 0
   m_Name: LaJamCrate
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1977972083764007320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318459019923351996}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02, z: 0.02}
+  m_Center: {x: 9.473115e-18, y: 0.01, z: -4.656613e-10}
