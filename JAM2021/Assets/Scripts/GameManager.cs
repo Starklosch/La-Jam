@@ -414,4 +414,9 @@ public class GameManager : MonoBehaviour
         if (!UIManagerInstance) return false;
         return UIManagerInstance.IsEActive();
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
