@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 97976094}
   - component: {fileID: 97976095}
   - component: {fileID: 6296560211369050341}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LaJamGolem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

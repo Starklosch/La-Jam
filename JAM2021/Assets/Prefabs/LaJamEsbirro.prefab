@@ -652,7 +652,7 @@ GameObject:
   - component: {fileID: 3702021040450370596}
   - component: {fileID: 3824219180281991884}
   - component: {fileID: 6266136214322398798}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LaJamEsbirro
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 6252794871252388362}
   - component: {fileID: 5321865429251934704}
   - component: {fileID: 3612838826688772823}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LaJamBruja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
