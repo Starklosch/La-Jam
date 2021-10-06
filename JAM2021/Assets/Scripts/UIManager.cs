@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     Transform eKey;
     Transform chestPanels;
     Transform pauseMenu;
+    Transform controlsPanel;
     Text deckCountText;
     Animator shuffledText;
     void Start()
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
         deckCountText = transform.Find("PlayerUI").Find("CardsDeck").Find("Num").GetComponent<Text>();
         shuffledText = transform.Find("PlayerUI").Find("CardsDeck").Find("ShuffledText").GetComponent<Animator>();
         pauseMenu = transform.Find("PauseMenu");
+        controlsPanel = transform.Find("Controls");
 
     }
     //Durability of weapon
@@ -148,5 +150,10 @@ public class UIManager : MonoBehaviour
             if (panel.gameObject.activeInHierarchy) panel.gameObject.SetActive(false);
         }
         GameManager.Instance.DiscardChest();
+    }
+
+    public void ShowControlsPanel(bool b)
+    {
+        controlsPanel.gameObject.SetActive(b);
     }
 }

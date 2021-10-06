@@ -52,15 +52,15 @@ public class GameManager : MonoBehaviour
     public void TogglePauseMenu()
     {
         isPaused = !isPaused;
-        SetTimeRunning(isPaused);
+        SetTimeRunning(!isPaused);
         UIManagerInstance.SetPauseMenuUI(isPaused);
     }
 
     public void SetTimeRunning(bool a)
     {
-        Time.timeScale = (a) ? 0 : 1;
-        Cursor.lockState = a ? CursorLockMode.None : CursorLockMode.Locked;
-        Cursor.visible = a;
+        Time.timeScale = (a) ? 1 : 0;
+        Cursor.lockState = a ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !a;
     }
 
     UIManager UIManagerInstance;
@@ -194,18 +194,18 @@ public class GameManager : MonoBehaviour
             AddToDeck(chestCardHolding);
             chestCardHolding = Cards.None;
         }
-        SetTimeRunning(false);
+        SetTimeRunning(true);
     }
 
     public void DiscardChest()
     {
         chestCardHolding = Cards.None;
-        SetTimeRunning(false);
+        SetTimeRunning(true);
     }
 
     public void OpenChest()
     {
-        SetTimeRunning(true);
+        SetTimeRunning(false);
         //Bad luck prevention
         if (deck.Count < 1)
         {
