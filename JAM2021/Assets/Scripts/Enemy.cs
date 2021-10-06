@@ -29,6 +29,8 @@ public class Enemy : MonoBehaviour
     public float chaseDistance;
     public float attackDistance;
 
+    public float attackRadius;
+
     public bool hasMoveAnimation = false;
 
     protected float attackCooldown;
@@ -118,6 +120,8 @@ public class Enemy : MonoBehaviour
             MoveAnim = true;
         }
 
+        var raycast = Physics.Raycast(transform.position, player.transform.position - transform.position);
+
         if (pDistance < attackDistance)
         {
             Vector3 direction = (player.transform.position - transform.position).normalized;
@@ -140,15 +144,6 @@ public class Enemy : MonoBehaviour
         canAttack = false;
         //CanMove = false;
     }
-
-    //protected virtual void AttackEnd()
-    //{
-    //    Debug.Log("Attack end");
-    //    canAttack = true;
-    //    IsStopped = true;
-
-    //    attackCooldown = Time.deltaTime + attackTime;
-    //}
 
     public virtual void Heal(int h)
     {
@@ -213,6 +208,16 @@ public class Enemy : MonoBehaviour
     {
         if (canAnim)
             anim.SetTrigger(animAttackTrigger);
+    }
+
+    protected void OnDrawGizmos()
+    {
+        var color = Gizmos.color;
+        Gizmos.color = Color.red;
+
+        if (nav != null)
+            Gizmos.DrawWireSphere(nav.destination, attackRadius);
+        Gizmos.color = color;
     }
 
 }

@@ -37,22 +37,12 @@ public class Knight : Enemy
     {
         Debug.Log(name + " used " + type);
 
-        if (Physics.CheckSphere(nav.destination, 3, playerMask))
+        if (Physics.CheckSphere(nav.destination, attackRadius, playerMask))
             player.Mana.Harm(damage);
 
         attackCooldown = Time.deltaTime + attackTime;
         canAttack = true;
         IsStopped = false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        var color = Gizmos.color;
-        Gizmos.color = Color.red;
-
-        if (nav != null)
-            Gizmos.DrawWireSphere(nav.destination, 3);
-        Gizmos.color = color;
     }
 
     public override void Update()

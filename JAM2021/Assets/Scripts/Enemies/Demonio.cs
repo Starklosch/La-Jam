@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bruja : Enemy
+public class Demonio : Enemy
 {
 
-    int animSpell1;
-    int animSpell2;
+    int animAttackL, animAttackR, animClawL, animClawR;
 
     public override void Start()
     {
         base.Start();
 
-        animSpell1 = Animator.StringToHash("Spell1");
-        animSpell2 = Animator.StringToHash("Spell2");
+        animAttackL = Animator.StringToHash("AttackL");
+        animAttackR = Animator.StringToHash("AttackR");
+        animClawL = Animator.StringToHash("ClawL");
+        animClawR = Animator.StringToHash("ClawR");
     }
 
     public override void Attack()
@@ -22,16 +23,20 @@ public class Bruja : Enemy
 
         if (canAnim)
         {
-            int ani = Random.Range(0, 2);
+            int ani = Random.Range(0, 4);
             switch (ani)
             {
                 case 0:
-                    anim.SetTrigger(animSpell1);
+                    anim.SetTrigger(animAttackL);
                     break;
                 case 1:
-                    anim.SetTrigger(animSpell2);
+                    anim.SetTrigger(animAttackR);
                     break;
-                default:
+                case 2:
+                    anim.SetTrigger(animClawL);
+                    break;
+                case 3:
+                    anim.SetTrigger(animClawR);
                     break;
             }
 
@@ -42,7 +47,7 @@ public class Bruja : Enemy
     {
         Debug.Log(name + " used " + type);
 
-        if (Physics.CheckSphere(nav.destination, 3, playerMask))
+        if (Physics.CheckSphere(nav.destination, attackRadius, playerMask))
             player.Mana.Harm(damage);
 
         attackCooldown = Time.deltaTime + attackTime;
@@ -50,23 +55,15 @@ public class Bruja : Enemy
         IsStopped = false;
     }
 
-    private void OnDrawGizmos()
-    {
-        var color = Gizmos.color;
-        Gizmos.color = Color.red;
-
-        if (nav != null)
-            Gizmos.DrawWireSphere(nav.destination, 3);
-        Gizmos.color = color;
-    }
-
     public override void Update()
     {
         base.Update();
+
     }
+
     public override bool TakeDamage(int d)
     {
-        //Sonido de daño bruja
+        //Sonido de daño demonio
         if (base.TakeDamage(d))
         {
             Die();
@@ -76,13 +73,15 @@ public class Bruja : Enemy
 
     public override void Die()
     {
-        //Sonido de muerte bruja
+        //Sonido de muerte demonio
         base.Die();
     }
 
     public enum AttackType
     {
-        Spell1,
-        Spell2
+        SimpleL,
+        SimpleR,
+        ClawL,
+        ClawR
     }
 }

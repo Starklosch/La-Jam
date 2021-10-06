@@ -17,7 +17,7 @@ public class Esbirro : Enemy
     {
         Debug.Log(name + " attacked");
 
-        if (Physics.CheckSphere(nav.destination, 3, playerMask))
+        if (Physics.CheckSphere(nav.destination, attackRadius, playerMask))
             player.Mana.Harm(damage);
 
         attackCooldown = Time.deltaTime + attackTime;

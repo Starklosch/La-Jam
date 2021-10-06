@@ -2,38 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Golem : Enemy
+public class Bruja : Enemy
 {
-    int animAttackMelee;
-    int animAttackRange;
+
+    int animSpell1;
+    int animSpell2;
 
     public override void Start()
     {
         base.Start();
-        
-        animAttackMelee = Animator.StringToHash("AttackMelee");
-        animAttackRange = Animator.StringToHash("AttackRange");
-    }
 
-    //public override void Heal(int h)
-    //{
-    //    base.Heal(h);
-    //}
-
-    public override bool TakeDamage(int d)
-    {
-        //Sonido de daño golem
-        if (base.TakeDamage(d))
-        {
-            Die();
-        }
-        return false;
-    }
-
-    public override void Die()
-    {
-        //Sonido de muerte golem
-        base.Die();
+        animSpell1 = Animator.StringToHash("Spell1");
+        animSpell2 = Animator.StringToHash("Spell2");
     }
 
     public override void Attack()
@@ -46,10 +26,10 @@ public class Golem : Enemy
             switch (ani)
             {
                 case 0:
-                    anim.SetTrigger(animAttackMelee);
+                    anim.SetTrigger(animSpell1);
                     break;
                 case 1:
-                    anim.SetTrigger(animAttackRange);
+                    anim.SetTrigger(animSpell2);
                     break;
                 default:
                     break;
@@ -61,7 +41,7 @@ public class Golem : Enemy
     public void AttackEnd(AttackType type)
     {
         Debug.Log(name + " used " + type);
-        
+
         if (Physics.CheckSphere(nav.destination, attackRadius, playerMask))
             player.Mana.Harm(damage);
 
@@ -70,22 +50,30 @@ public class Golem : Enemy
         IsStopped = false;
     }
 
-    //public override void Chase()
-    //{
-    //    base.Chase();
-    //    //Debug.Log(nav);
-    //    nav.SetDestination(player.transform.position);
-    //}
-
     public override void Update()
     {
         base.Update();
+    }
 
+    public override bool TakeDamage(int d)
+    {
+        //Sonido de daño bruja
+        if (base.TakeDamage(d))
+        {
+            Die();
+        }
+        return false;
+    }
+
+    public override void Die()
+    {
+        //Sonido de muerte bruja
+        base.Die();
     }
 
     public enum AttackType
     {
-        Melee,
-        Range
+        Spell1,
+        Spell2
     }
 }

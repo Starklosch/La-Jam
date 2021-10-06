@@ -638,9 +638,9 @@ GameObject:
   - component: {fileID: 7982257288779003107}
   - component: {fileID: -5203700459236307431}
   - component: {fileID: 4167344719455507643}
-  - component: {fileID: 8324486361478560975}
   - component: {fileID: 648118860100331770}
   - component: {fileID: 7528875757095224210}
+  - component: {fileID: 8324486361478560975}
   m_Layer: 12
   m_Name: LaJamKnight
   m_TagString: Untagged
@@ -705,29 +705,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8324486361478560975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7317641423908613721}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11ae79def0cbc7d47888c93b3a799fc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  anim: {fileID: 0}
-  manager: {fileID: 0}
-  attackTime: 0
-  damage: 5
-  chaseDistance: 10
-  attackDistance: 4
-  hasMoveAnimation: 0
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!54 &648118860100331770
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -757,6 +734,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.8, z: 1}
   m_Center: {x: 0, y: 1.6, z: -0.1}
+--- !u!114 &8324486361478560975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317641423908613721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ae79def0cbc7d47888c93b3a799fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  anim: {fileID: 0}
+  manager: {fileID: 0}
+  attackTime: 0
+  damage: 5
+  chaseDistance: 10
+  attackDistance: 4
+  hasMoveAnimation: 0
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &7556546222153118796
 GameObject:
   m_ObjectHideFlags: 0
