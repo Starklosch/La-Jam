@@ -8,7 +8,7 @@ public class MeleeHit : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Enemy e = other.GetComponent<Enemy>();
+        Enemy e = other.attachedRigidbody.GetComponent<Enemy>();
         if (e)
         {
             e.TakeDamage((int)weaponsComponent.GetCurrentDamage());

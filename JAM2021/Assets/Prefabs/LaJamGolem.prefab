@@ -1889,8 +1889,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.25, z: 0.13}
-  m_Center: {x: 0, y: 0.14, z: -0.02}
+  m_Size: {x: 0.3, y: 0.2762405, z: 0.1634815}
+  m_Center: {x: 0, y: 0.15312026, z: -0.0107613085}
 --- !u!114 &6296560211369050341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1906,10 +1906,11 @@ MonoBehaviour:
   maxHealth: 100
   anim: {fileID: 0}
   manager: {fileID: 0}
-  attackTime: 0
+  attackTime: 1
   damage: 5
   chaseDistance: 12
   attackDistance: 5
+  attackRadius: 3
   hasMoveAnimation: 1
   playerMask:
     serializedVersion: 2
