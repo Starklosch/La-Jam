@@ -778,14 +778,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11ae79def0cbc7d47888c93b3a799fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   anim: {fileID: 0}
   manager: {fileID: 0}
-  attackTime: 1
-  damage: 5
-  chaseDistance: 10
-  attackDistance: 4
-  attackRadius: 3
+  attackTime: 1.3
+  damage: 15
+  chaseDistance: 6
+  attackDistance: 3
+  attackRadius: 1.5
   hasMoveAnimation: 0
   playerMask:
     serializedVersion: 2

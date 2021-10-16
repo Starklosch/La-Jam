@@ -1903,14 +1903,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3764b163eb8415441852d4729aa0f3b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   anim: {fileID: 0}
   manager: {fileID: 0}
-  attackTime: 1
-  damage: 5
-  chaseDistance: 12
-  attackDistance: 5
-  attackRadius: 3
+  attackTime: 2
+  damage: 50
+  chaseDistance: 10
+  attackDistance: 6
+  attackRadius: 4
   hasMoveAnimation: 1
   playerMask:
     serializedVersion: 2
